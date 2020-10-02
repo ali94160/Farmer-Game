@@ -19,18 +19,37 @@ public class Player {
 
     public void showAnimalsInStore(){
 
-        System.out.println("Welcome to the Pet Store!");
+        System.out.println("[PET STORE]");
         System.out.println("What Animal would you like to buy?");
-        System.out.println("1. Sheep");
-        System.out.println("2. Dog");
+        System.out.println("1. Sheep | cost: $2000 |");
+        System.out.println("2. Dog   | cost: $2000 |");
+        System.out.println("3. Cow   | cost: $2000 |");
         input = scanner.next();
 
         if(input.equals("1")){
-            System.out.println("What are you going to call your sheep?");
+            money = (money - 2000);
+            System.out.print("Name your Sheep: ");
             input = scanner.next();
-            System.out.println("What gender?");
+            System.out.print("What gender? (male/female): ");
             input2 = scanner.next();
             animals.add(new Sheep(input,input2));
+        }
+        if(input.equals("2")){
+            money = (money - 2000);
+            System.out.print("Name your Dog: ");
+            input = scanner.next();
+            System.out.print("What gender? (male/female): ");
+            input2 = scanner.next();
+            animals.add(new Dog(input,input2));
+        }
+
+        if(input.equals("3")){
+            money = (money - 2000);
+            System.out.print("Name your Cow: ");
+            input = scanner.next();
+            System.out.print("What gender? (male/female): ");
+            input2 = scanner.next();
+            animals.add(new Cow(input,input2));
         }
 
 

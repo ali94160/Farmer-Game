@@ -55,9 +55,9 @@ public class Game {
     public void printMenu(Player p){
 
 
-                System.out.println(p.name + " it's your turn:");
+                System.out.println("[" + p.name + "] " + "it's your turn:");
                 System.out.println("-".repeat(20));
-                System.out.println("Your balance: " + p.money);
+                System.out.println("Your balance: " + "$" + p.money);
                 System.out.println("-".repeat(20));
                 System.out.println("Your animals:");
                 for(Animal a : p.animals){
