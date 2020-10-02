@@ -28,16 +28,23 @@ public class Game {
 
     public void mainMenu() {
         for(int i = 0; i < roundInput; i++){
-            for(int j = 0; j < playerInput; j++){
+            for(int j = 0; j < players.size(); j++){
                 printMenu(players.get(j));
 
-                System.out.println("_".repeat(10));
+                System.out.println("_".repeat(20));
                 System.out.println("1. Buy Animal");
                 System.out.println("2. Sell Animal");
                 System.out.println("3. Buy Food");
                 System.out.println("4. Feed Animals");
                 System.out.println("5. Make Animals");
+                System.out.println("_".repeat(20));
 
+                playerInput = scanner.nextInt();
+
+                switch (playerInput){
+                    case 1:
+                        players.get(j).showAnimalsInStore();
+                }
             }
         }
 
@@ -47,17 +54,14 @@ public class Game {
 
     public void printMenu(Player p){
 
+
                 System.out.println(p.name + " it's your turn:");
-                System.out.println("-".repeat(10));
+                System.out.println("-".repeat(20));
                 System.out.println("Your balance: " + p.money);
-                System.out.println("-".repeat(10));
+                System.out.println("-".repeat(20));
                 System.out.println("Your animals:");
-                for(Animal a : animals){
-                    if(a == null){
-                        System.out.println("You dont have any animals yet");
-                    }else{
-                        System.out.println(a.name + " " + a.gender + " " + a.healthPoints);
-                    }
+                for(Animal a : p.animals){
+                    System.out.println(a.name + " " + a.gender + " " + a.healthPoints);
                 }
 
     }
