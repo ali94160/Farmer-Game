@@ -21,6 +21,7 @@ public class Game {
                     ", Enter your name:");
             playerName = scanner.next();
             players.add(new Player(playerName));
+
         }
 
         mainMenu();
@@ -44,7 +45,13 @@ public class Game {
                 switch (playerInput){
                     case 1:
                         players.get(j).showAnimalsInStore();
+                        break;
+                    case 2:
+                        players.get(j).sellAnimals(players.get(j));
+                        break;
+
                 }
+
             }
         }
 
@@ -61,7 +68,8 @@ public class Game {
                 System.out.println("-".repeat(20));
                 System.out.println("Your animals:");
                 for(Animal a : p.animals){
-                    System.out.println(a.name + " " + a.gender + " " + a.healthPoints);
+                    System.out.println("(" + a.getClass().getSimpleName() + ")" + " " + a.name + "  "
+                            + "(" + a.gender + ")" + "  " + a.healthPoints + "HP");
                 }
 
     }
