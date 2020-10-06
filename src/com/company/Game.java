@@ -35,21 +35,23 @@ public class Game {
                 System.out.println("\n".repeat(25));
                 System.out.println("Round: " + (i + 1));
                 printMenu(players.get(j));
-                System.out.println("_".repeat(25));
+                System.out.println("_".repeat(30));
                 System.out.println("1. Buy Animal");
                 System.out.println("2. Sell Animal");
                 System.out.println("3. Buy Food");
                 System.out.println("4. Feed Animals");
                 System.out.println("5. Make Animals");
-                System.out.println("_".repeat(25));
+                System.out.println("_".repeat(30));
 
                 playerInput = scanner.nextInt();
 
                 switch (playerInput){
                     case 1:
+                        System.out.println("\n".repeat(25));
                         players.get(j).showAnimalsInStore();
                         break;
                     case 2:
+                        System.out.println("\n".repeat(25));
                         players.get(j).sellAnimals(players.get(j));
                         break;
 
@@ -66,9 +68,9 @@ public class Game {
     public void printMenu(Player p){
 
                 System.out.println("[" + p.name + "] " + "it's your turn:");
-                System.out.println("-".repeat(25));
+                System.out.println("-".repeat(30));
                 System.out.println("Your balance: " + "$" + p.money);
-                System.out.println("-".repeat(25));
+                System.out.println("-".repeat(30));
                 System.out.println("Your animals:");
                 for(Animal a : p.animals){
                     System.out.println("(" + a.getClass().getSimpleName() + ")" + " " + a.name + "  "
