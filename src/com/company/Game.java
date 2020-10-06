@@ -50,11 +50,15 @@ public class Game {
                         System.out.println("\n".repeat(25));
                         players.get(j).showAnimalsInStore();
                         break;
+
                     case 2:
                         System.out.println("\n".repeat(25));
                         players.get(j).sellAnimals(players.get(j));
                         break;
 
+                    case 3:
+                        System.out.println("\n".repeat(25));
+                        players.get(j).buyFood();
                 }
 
             }
@@ -76,8 +80,15 @@ public class Game {
                     System.out.println("(" + a.getClass().getSimpleName() + ")" + " " + a.name + "  "
                             + "(" + a.gender + ")" + "  " + a.healthPoints + "HP");
                 }
+                System.out.println("-".repeat(30));
+                System.out.println("Your Food:");
+                for(int i = 0; i < p.food.size();i++){
+                    System.out.println(p.food.get(i).name + " " + p.food.get(i).kilos + "kg" );
+
+                }
 
     }
+
 
 
     public void healthLoss(){

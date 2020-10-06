@@ -12,18 +12,18 @@ public class Player {
     ArrayList<Animal> animals = new ArrayList<Animal>();
     ArrayList<Food> food = new ArrayList<Food>();
 
-    public Player(String name){
+    public Player(String name) {
         this.name = name;
         this.money = 10000;
     }
 
-    public void showAnimalsInStore(){
+    public void showAnimalsInStore() {
 
-        do{
+        do {
             System.out.println("\n");
             System.out.println("---------------[PET STORE]--------------");
             System.out.println("Balance: " + "$" + money);
-            System.out.println("[" + Player.this.name + "]" +  " What Animal would you like to buy?");
+            System.out.println("[" + Player.this.name + "]" + " What Animal would you like to buy?");
             System.out.println("-".repeat(41));
             System.out.println("1. Sheep  | cost: $2000 |");
             System.out.println("2. Dog    | cost: $2000 |");
@@ -40,13 +40,15 @@ public class Player {
                 input = scanner.next();
                 System.out.print("What gender: \n 1. Male \n 2. Female \n");
                 input2 = scanner.next();
-                switch (input2){
-                    case "1": input2 = (String)"male";
+                switch (input2) {
+                    case "1":
+                        input2 = (String) "male";
                         animals.add(new Sheep(input, input2));
-                    break;
-                    case "2": input2 = (String)"female";
+                        break;
+                    case "2":
+                        input2 = (String) "female";
                         animals.add(new Sheep(input, input2));
-                    break;
+                        break;
                 }
                 System.out.println("\n".repeat(25));
                 System.out.println("-".repeat(41) + "\nYou've Purchased a Sheep" + " " + "(" + input2 + ")" + " for $2000 \n");
@@ -57,11 +59,13 @@ public class Player {
                 input = scanner.next();
                 System.out.print("What gender: \n 1. Male \n 2. Female \n");
                 input2 = scanner.next();
-                switch (input2){
-                    case "1": input2 = (String)"male";
+                switch (input2) {
+                    case "1":
+                        input2 = (String) "male";
                         animals.add(new Dog(input, input2));
                         break;
-                    case "2": input2 = (String)"female";
+                    case "2":
+                        input2 = (String) "female";
                         animals.add(new Dog(input, input2));
                         break;
                 }
@@ -76,11 +80,13 @@ public class Player {
                 input = scanner.next();
                 System.out.print("What gender: \n 1. Male \n 2. Female \n");
                 input2 = scanner.next();
-                switch (input2){
-                    case "1": input2 = (String)"male";
+                switch (input2) {
+                    case "1":
+                        input2 = (String) "male";
                         animals.add(new Cow(input, input2));
                         break;
-                    case "2": input2 = (String)"female";
+                    case "2":
+                        input2 = (String) "female";
                         animals.add(new Cow(input, input2));
                         break;
                 }
@@ -95,11 +101,13 @@ public class Player {
                 input = scanner.next();
                 System.out.print("What gender: \n 1. Male \n 2. Female \n");
                 input2 = scanner.next();
-                switch (input2){
-                    case "1": input2 = (String)"male";
+                switch (input2) {
+                    case "1":
+                        input2 = (String) "male";
                         animals.add(new Cat(input, input2));
                         break;
-                    case "2": input2 = (String)"female";
+                    case "2":
+                        input2 = (String) "female";
                         animals.add(new Cat(input, input2));
                         break;
                 }
@@ -114,11 +122,13 @@ public class Player {
                 input = scanner.next();
                 System.out.print("What gender: \n 1. Male \n 2. Female \n");
                 input2 = scanner.next();
-                switch (input2){
-                    case "1": input2 = (String)"male";
+                switch (input2) {
+                    case "1":
+                        input2 = (String) "male";
                         animals.add(new Rabbit(input, input2));
                         break;
-                    case "2": input2 = (String)"female";
+                    case "2":
+                        input2 = (String) "female";
                         animals.add(new Rabbit(input, input2));
                         break;
                 }
@@ -127,33 +137,100 @@ public class Player {
             }
 
 
-            }while(!input.equals("6"));
-
+        } while (!input.equals("6"));
 
 
     }
 
     public void sellAnimals(Player p) {
-                while(true) {
-                    System.out.println("What Animals would you like to sell:");
-                    int optionCounter = 1;
-                    System.out.println("0. EXIT");
-                    for (Animal a : p.animals) {
-                        System.out.println(optionCounter + "." + "(" + a.getClass().getSimpleName() + ")" + " " + a.name + "  "
-                                + "(" + a.gender + ")" + "  " + a.healthPoints + "HP");
-                        optionCounter++;
-                    }
-                    input = scanner.next();
+        while (true) {
+            System.out.println("What Animals would you like to sell:");
+            int optionCounter = 1;
+            System.out.println("0. EXIT");
+            for (Animal a : p.animals) {
+                System.out.println(optionCounter + "." + "(" + a.getClass().getSimpleName() + ")" + " " + a.name + "  "
+                        + "(" + a.gender + ")" + "  " + a.healthPoints + "HP");
+                optionCounter++;
+            }
+            input = scanner.next();
 
-                    if (input.equals("0")) {
-                        return;
-                    }
-                    animals.remove(Integer.parseInt(input) - 1);
-                    money += 2000;
+            if (input.equals("0")) {
+                return;
+            }
+            animals.remove(Integer.parseInt(input) - 1);
+            money += 2000;
+        }
+    }
+
+
+    public void buyFood() {
+
+        do {
+        System.out.println("\n");
+        System.out.println("---------------[FOOD STORE]--------------");
+        System.out.println("Balance: " + "$" + money);
+        System.out.println("[" + Player.this.name + "]" + " What Animal would you like to buy?");
+        System.out.println("-".repeat(41));
+        System.out.println("1. Apples  | cost: $200 |");
+        System.out.println("2. Carrots | cost: $200 |");
+        System.out.println("3. Grass   | cost: $200 |");
+        System.out.println("-".repeat(41));
+        System.out.println("6. EXIT THE SHOP");
+        input = scanner.next();
+
+
+        if (input.equals("1")) {
+            System.out.println("How many KG?");
+            input2 = scanner.next();
+            food.add(new Apples("Apple", (Integer.parseInt(input2)), 200));
+            money = money - Integer.parseInt(input2) * 200;
+            checkFood("Apple");
+            System.out.println("\n".repeat(25));
+        }
+
+        if (input.equals("2")){
+            System.out.println("How many KG?");
+            input2 = scanner.next();
+            food.add(new Carrots("Carrot",(Integer.parseInt(input2)),200));
+            checkFood("Carrot");
+            System.out.println("\n".repeat(25));
+        }
+
+        if(input.equals("3")){
+            System.out.println("How many KG?");
+            input2 = scanner.next();
+            food.add(new Grass("Grass",(Integer.parseInt(input2)),200));
+            checkFood("Grass");
+            System.out.println("\n".repeat(25));
+        }
+        } while (!input.equals("6"));
+
+    }
+
+
+
+
+    public void checkFood(String type) {
+        int check = 0;
+        int add = 0;
+        for (int i = 0; i < food.size(); i++) {
+            if (food.get(i).name.equals(type)) {
+                check++;
+            }
+            if (check == 2) {
+                add = food.get(i).kilos;
+                food.remove(i);
+            }
+        }
+        if(check == 2) {
+            for (int i = 0; i < food.size(); i++) {
+                if (food.get(i).name.equals(type)) {
+                    food.get(i).kilos += add;
                 }
+            }
         }
-
-        }
+    }
+}
 
 
 

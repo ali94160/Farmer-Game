@@ -2,16 +2,9 @@ package com.company;
 
 public class Grass extends Food{
 
-    int price;
-    int kilos;
-    String name;
+    int price = 200;
 
-    public Grass (String name, int kilos, int price){
-        this.name = name;
-        this.kilos = kilos;
-        this.price = price;
+    public Grass(String name, int kilos, int price) {
+        super(name, kilos, price);
     }
-
-
-
 }

@@ -2,15 +2,10 @@ package com.company;
 
 public class Carrots extends Food{
 
-    int price;
-    int kilos;
-    String name;
+    public int price = 200;
 
-    public Carrots (String name, int kilos, int price){
-        this.name = name;
-        this.kilos = kilos;
-        this.price = price;
+
+    public Carrots(String name, int kilos, int price) {
+        super(name, kilos, price);
     }
-
-
 }
