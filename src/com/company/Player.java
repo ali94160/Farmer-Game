@@ -186,22 +186,27 @@ public class Player {
             money = money - Integer.parseInt(input2) * 200;
             checkFood("Apple");
             System.out.println("\n".repeat(25));
+            System.out.println("You bought " + input2 + "kg Apples...");
         }
 
         if (input.equals("2")){
             System.out.println("How many KG?");
             input2 = scanner.next();
             food.add(new Carrots("Carrot",(Integer.parseInt(input2)),200));
+            money = money - Integer.parseInt(input2) * 200;
             checkFood("Carrot");
             System.out.println("\n".repeat(25));
+            System.out.println("You bought " + input2 + "kg Carrots...");
         }
 
         if(input.equals("3")){
             System.out.println("How many KG?");
             input2 = scanner.next();
             food.add(new Grass("Grass",(Integer.parseInt(input2)),200));
+            money = money - Integer.parseInt(input2) * 200;
             checkFood("Grass");
             System.out.println("\n".repeat(25));
+            System.out.println("You bought " + input2 + "kg Grass...");
         }
         } while (!input.equals("6"));
 
