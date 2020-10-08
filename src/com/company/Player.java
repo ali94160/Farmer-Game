@@ -4,12 +4,17 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Player {
+    public static final String ANSI_GREEN = "\u001B[32m";
+    public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String CYAN_BRIGHT = "\033[0;96m";
+
     Scanner scanner = new Scanner(System.in);
     String input = "";
     String input2 = "";
     public int money;
     public String name;
-    ArrayList<Animal> animals = new ArrayList<Animal>();
+    public ArrayList<Animal> animals = new ArrayList<Animal>();
     ArrayList<Food> food = new ArrayList<Food>();
 
     public Player(String name) {
@@ -18,128 +23,7 @@ public class Player {
     }
 
     public void showAnimalsInStore() {
-
-        do {
-            System.out.println("\n");
-            System.out.println("---------------[PET STORE]--------------");
-            System.out.println("Balance: " + "$" + money);
-            System.out.println("[" + Player.this.name + "]" + " What Animal would you like to buy?");
-            System.out.println("-".repeat(41));
-            System.out.println("1. Sheep  | cost: $2000 |");
-            System.out.println("2. Dog    | cost: $2000 |");
-            System.out.println("3. Cow    | cost: $2000 |");
-            System.out.println("4. Cat    | cost: $2000 |");
-            System.out.println("5. Rabbit | cost: $2000 |");
-            System.out.println("-".repeat(41));
-            System.out.println("6. EXIT THE SHOP");
-            input = scanner.next();
-
-            if (input.equals("1")) {
-                money = (money - 2000);
-                System.out.print("Name your Sheep: ");
-                input = scanner.next();
-                System.out.print("What gender: \n 1. Male \n 2. Female \n");
-                input2 = scanner.next();
-                switch (input2) {
-                    case "1":
-                        input2 = (String) "male";
-                        animals.add(new Sheep(input, input2));
-                        break;
-                    case "2":
-                        input2 = (String) "female";
-                        animals.add(new Sheep(input, input2));
-                        break;
-                }
-                System.out.println("\n".repeat(25));
-                System.out.println("-".repeat(41) + "\nYou've Purchased a Sheep" + " " + "(" + input2 + ")" + " for $2000 \n");
-            }
-            if (input.equals("2")) {
-                money = (money - 2000);
-                System.out.print("Name your Dog: ");
-                input = scanner.next();
-                System.out.print("What gender: \n 1. Male \n 2. Female \n");
-                input2 = scanner.next();
-                switch (input2) {
-                    case "1":
-                        input2 = (String) "male";
-                        animals.add(new Dog(input, input2));
-                        break;
-                    case "2":
-                        input2 = (String) "female";
-                        animals.add(new Dog(input, input2));
-                        break;
-                }
-                System.out.println("\n".repeat(25));
-                System.out.println("-".repeat(41) + "\nYou've Purchased a Dog" + " " + "(" + input2 + ")" + " for $2000 \n");
-            }
-
-
-            if (input.equals("3")) {
-                money = (money - 2000);
-                System.out.print("Name your Cow: ");
-                input = scanner.next();
-                System.out.print("What gender: \n 1. Male \n 2. Female \n");
-                input2 = scanner.next();
-                switch (input2) {
-                    case "1":
-                        input2 = (String) "male";
-                        animals.add(new Cow(input, input2));
-                        break;
-                    case "2":
-                        input2 = (String) "female";
-                        animals.add(new Cow(input, input2));
-                        break;
-                }
-                System.out.println("\n".repeat(25));
-                System.out.println("-".repeat(41) + "\nYou've Purchased a Cow" + " " + "(" + input2 + ")" + " for $2000 \n");
-            }
-
-
-            if (input.equals("4")) {
-                money = (money - 2000);
-                System.out.println("Name your Cat: ");
-                input = scanner.next();
-                System.out.print("What gender: \n 1. Male \n 2. Female \n");
-                input2 = scanner.next();
-                switch (input2) {
-                    case "1":
-                        input2 = (String) "male";
-                        animals.add(new Cat(input, input2));
-                        break;
-                    case "2":
-                        input2 = (String) "female";
-                        animals.add(new Cat(input, input2));
-                        break;
-                }
-                System.out.println("\n".repeat(25));
-                System.out.println("-".repeat(41) + "\nYou've Purchased a Cat" + " " + "(" + input2 + ")" + " for $2000 \n");
-            }
-
-
-            if (input.equals("5")) {
-                money = (money - 2000);
-                System.out.println("Name your Rabbit: ");
-                input = scanner.next();
-                System.out.print("What gender: \n 1. Male \n 2. Female \n");
-                input2 = scanner.next();
-                switch (input2) {
-                    case "1":
-                        input2 = (String) "male";
-                        animals.add(new Rabbit(input, input2));
-                        break;
-                    case "2":
-                        input2 = (String) "female";
-                        animals.add(new Rabbit(input, input2));
-                        break;
-                }
-                System.out.println("\n".repeat(25));
-                System.out.println("-".repeat(41) + "\nYou've Purchased a Rabbit" + " " + "(" + input2 + ")" + " for $2000 \n");
-            }
-
-
-        } while (!input.equals("6"));
-
-
+        Store.buyAnimal(this);
     }
 
     public void sellAnimals(Player p) {
@@ -149,7 +33,7 @@ public class Player {
             System.out.println("0. EXIT");
             for (Animal a : p.animals) {
                 System.out.println(optionCounter + "." + "(" + a.getClass().getSimpleName() + ")" + " " + a.name + "  "
-                        + "(" + a.gender + ")" + "  " + a.healthPoints + "HP");
+                        + "(" + a.gender + ")" + "  " + a.healthPoints + "HP" + " -> Sell for: $" + (a.price * a.healthPoints) / 100);
                 optionCounter++;
             }
             input = scanner.next();
@@ -157,84 +41,37 @@ public class Player {
             if (input.equals("0")) {
                 return;
             }
+            sellAnimal(animals.get(Integer.parseInt(input) - 1));
             animals.remove(Integer.parseInt(input) - 1);
-            money += 2000;
         }
     }
 
 
     public void buyFood() {
-
-        do {
-        System.out.println("\n");
-        System.out.println("---------------[FOOD STORE]--------------");
-        System.out.println("Balance: " + "$" + money);
-        System.out.println("[" + Player.this.name + "]" + " What Animal would you like to buy?");
-        System.out.println("-".repeat(41));
-        System.out.println("1. Apples  | cost: $200 |");
-        System.out.println("2. Carrots | cost: $200 |");
-        System.out.println("3. Grass   | cost: $200 |");
-        System.out.println("-".repeat(41));
-        System.out.println("6. EXIT THE SHOP");
-        input = scanner.next();
-
-
-        if (input.equals("1")) {
-            System.out.println("How many KG?");
-            input2 = scanner.next();
-            food.add(new Apples("Apple", (Integer.parseInt(input2)), 200));
-            money = money - Integer.parseInt(input2) * 200;
-            checkFood("Apple");
-            System.out.println("\n".repeat(25));
-            System.out.println("You bought " + input2 + "kg Apples...");
+        if(money < 200){
+            System.out.println("\n".replace("\n",""));
+            System.out.println("You don't have enough money.");
+            return;
         }
+            Store.food(this);
+    }
 
-        if (input.equals("2")){
-            System.out.println("How many KG?");
-            input2 = scanner.next();
-            food.add(new Carrots("Carrot",(Integer.parseInt(input2)),200));
-            money = money - Integer.parseInt(input2) * 200;
-            checkFood("Carrot");
-            System.out.println("\n".repeat(25));
-            System.out.println("You bought " + input2 + "kg Carrots...");
-        }
+    public void sellAnimal(Animal a){
+       int profit = (a.healthPoints * a.price) / 100;
+       money += profit;
+    }
 
-        if(input.equals("3")){
-            System.out.println("How many KG?");
-            input2 = scanner.next();
-            food.add(new Grass("Grass",(Integer.parseInt(input2)),200));
-            money = money - Integer.parseInt(input2) * 200;
-            checkFood("Grass");
-            System.out.println("\n".repeat(25));
-            System.out.println("You bought " + input2 + "kg Grass...");
+    public  void deadAnimal(){
+        for(int i = 0; i < animals.size(); i++){
+            if(animals.get(i).healthPoints <= 0){
+                System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET + animals.get(i).name + ANSI_RED +" has died..." + ANSI_RESET);
+                animals.remove(i);
+            }
+
         }
-        } while (!input.equals("6"));
 
     }
 
-
-
-
-    public void checkFood(String type) {
-        int check = 0;
-        int add = 0;
-        for (int i = 0; i < food.size(); i++) {
-            if (food.get(i).name.equals(type)) {
-                check++;
-            }
-            if (check == 2) {
-                add = food.get(i).kilos;
-                food.remove(i);
-            }
-        }
-        if(check == 2) {
-            for (int i = 0; i < food.size(); i++) {
-                if (food.get(i).name.equals(type)) {
-                    food.get(i).kilos += add;
-                }
-            }
-        }
-    }
 }
 
 

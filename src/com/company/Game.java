@@ -2,6 +2,10 @@ package com.company;
 import java.util.*;
 public class Game {
 
+    // Colors for output
+    public static final String BLUE_BOLD = "\033[1;34m";
+    public static final String RESET = "\033[0m";
+
     Scanner scanner = new Scanner(System.in);
     Random random = new Random();
     int roundInput;
@@ -22,9 +26,8 @@ public class Game {
                     ", Enter your name:");
             playerName = scanner.next();
             players.add(new Player(playerName));
-
         }
-
+        System.out.println("\n".repeat(25));
         mainMenu();
     }
 
@@ -32,8 +35,8 @@ public class Game {
         for(int i = 0; i < roundInput; i++){
             for(int j = 0; j < players.size(); j++){
                 roundInput++;
-                System.out.println("\n".repeat(25));
-                System.out.println("Round: " + (i + 1));
+                System.out.println("\n".repeat(3));
+                System.out.println(BLUE_BOLD + "Round: " + (i + 1) + RESET);
                 printMenu(players.get(j));
                 System.out.println("_".repeat(30));
                 System.out.println("1. Buy Animal");
@@ -63,6 +66,7 @@ public class Game {
 
             }
             healthLoss();
+            checkDeath();
         }
 
 
@@ -71,7 +75,7 @@ public class Game {
 
     public void printMenu(Player p){
 
-                System.out.println("[" + p.name + "] " + "it's your turn:");
+                System.out.println("[ " + p.name + " ] it's your turn:");
                 System.out.println("-".repeat(30));
                 System.out.println("Your balance: " + "$" + p.money);
                 System.out.println("-".repeat(30));
@@ -98,5 +102,12 @@ public class Game {
             }
         }
     }
+
+    public void checkDeath(){
+        for(Player p : players){
+            p.deadAnimal();
+        }
+    }
+
 
 }

@@ -6,6 +6,7 @@ abstract public class Animal {
 
 
     public int healthPoints;
+    public int price;
     public String name;
     public String gender;
 
@@ -14,7 +15,9 @@ abstract public class Animal {
         this.gender = gender;
         this.name = name;
         this.healthPoints = 100;
-}
+
+
+    }
 
 
 
