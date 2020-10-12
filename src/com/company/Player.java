@@ -78,14 +78,18 @@ public class Player {
 
     public void feedAnimal(Player p){
         while(true){
+            System.out.println("\n".repeat(2));
         System.out.println("[" + p.name + "]" + " What Animal would you like to feed?");
-            System.out.println("0. EXIT");
+            System.out.println("-".repeat(45));
             int optionCounter = 1;
             for (Animal a : p.animals) {
                 System.out.println(optionCounter + "." + "(" + a.getClass().getSimpleName() + ")" + " " + a.name + "  "
                         + "(" + a.gender + ")" + "  " + a.healthPoints);
                 optionCounter++;
          }
+            System.out.println("-".repeat(45));
+            System.out.println("0. EXIT");
+
             input = scanner.next();
 
             if (input.equals("0")) {
@@ -102,17 +106,20 @@ public class Player {
                 input3 = scanner.next();
                     System.out.println("How many Kg?");
                 input2 = scanner.next();
+            System.out.println("\n".repeat(25));
 
 
                 feedTheAnimal(animals.get(Integer.parseInt(input)-1));
                 p.food.get(Integer.parseInt(input3)-1).kilos -= Integer.parseInt(input2);
+            System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET +
+                    animals.get(Integer.parseInt(input)-1).name + " has gained " + "+ " + (Integer.parseInt(input2) * 10) + "HP");
+
 
         }
-
     }
 
     public void feedTheAnimal(Animal a){
-       a.healthPoints += 10;
+       a.healthPoints += 10 * Integer.parseInt(input2);
     }
 
 }

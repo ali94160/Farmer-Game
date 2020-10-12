@@ -50,22 +50,22 @@ public class Game {
 
                 switch (playerInput){
                     case 1:
-                        System.out.println("\n".repeat(25));
+                        System.out.println("\n".repeat(28));
                         players.get(j).showAnimalsInStore();
                         break;
 
                     case 2:
-                        System.out.println("\n".repeat(25));
+                        System.out.println("\n".repeat(28));
                         players.get(j).sellAnimals(players.get(j));
                         break;
 
                     case 3:
-                        System.out.println("\n".repeat(25));
+                        System.out.println("\n".repeat(28));
                         players.get(j).buyFood();
                         break;
 
                     case 4:
-                        System.out.println("\n".repeat(25));
+                        System.out.println("\n".repeat(28));
                         players.get(j).feedAnimal(players.get(j));
                         break;
                 }
@@ -93,6 +93,11 @@ public class Game {
                 System.out.println("-".repeat(30));
                 System.out.println("Your Food:");
                 for(int i = 0; i < p.food.size();i++){
+
+                   if(p.food.get((i)).kilos == 0) {
+                       p.food.remove(p.food.get(i));
+                       return;
+                   }
                     System.out.println(p.food.get(i).name + " " + p.food.get(i).kilos + "kg" );
 
                 }

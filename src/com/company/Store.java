@@ -25,7 +25,7 @@ public class Store {
             System.out.println("4. Cat    | cost: $2000 |");
             System.out.println("5. Rabbit | cost: $2000 |");
             System.out.println("-".repeat(41));
-            System.out.println("6. EXIT THE SHOP");
+            System.out.println("0. EXIT THE SHOP");
             input = scanner.next();
 
             if (input.equals("1")) {
@@ -45,7 +45,8 @@ public class Store {
                         break;
                 }
                 System.out.println("\n".repeat(25));
-                System.out.println("-".repeat(41) + "\nYou've Purchased a Sheep" + " " + "(" + input2 + ")" + " for $2000 \n");
+                System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET + ANSI_GREEN+
+                        "You've purchased a Sheep" + " " + "(" + input2 + ")" + " for $2000 \n"+ ANSI_RESET);
             }
             if (input.equals("2")) {
                 p.money = (p.money - 2000);
@@ -64,7 +65,8 @@ public class Store {
                         break;
                 }
                 System.out.println("\n".repeat(25));
-                System.out.println("-".repeat(41) + "\nYou've Purchased a Dog" + " " + "(" + input2 + ")" + " for $2000 \n");
+                System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET + ANSI_GREEN+
+                        "You've purchased a Dog" + " " + "(" + input2 + ")" + " for $2000 \n"+ ANSI_RESET);
             }
 
 
@@ -85,7 +87,8 @@ public class Store {
                         break;
                 }
                 System.out.println("\n".repeat(25));
-                System.out.println("-".repeat(41) + "\nYou've Purchased a Cow" + " " + "(" + input2 + ")" + " for $2000 \n");
+                System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET + ANSI_GREEN+
+                        "You've purchased a Cow" + " " + "(" + input2 + ")" + " for $2000 \n"+ ANSI_RESET);
             }
 
 
@@ -128,11 +131,12 @@ public class Store {
                         break;
                 }
                 System.out.println("\n".repeat(25));
-                System.out.println("-".repeat(41) + "\nYou've Purchased a Rabbit" + " " + "(" + input2 + ")" + " for $2000 \n");
+                System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET + ANSI_GREEN+
+                        "You've purchased a Rabbit" + " " + "(" + input2 + ")" + " for $2000 \n"+ ANSI_RESET);
             }
 
 
-        } while (!input.equals("6"));
+        } while (!input.equals("0"));
         System.out.println("\n".repeat(25));
         return;
     }
@@ -148,9 +152,9 @@ public class Store {
             System.out.println("2. Carrots | cost: $200 |");
             System.out.println("3. Grass   | cost: $200 |");
             System.out.println("-".repeat(41));
-            System.out.println("6. EXIT THE SHOP");
+            System.out.println("0. EXIT THE SHOP");
             input = scanner.next();
-            System.out.println("\n".repeat(25));
+            System.out.println("\n".repeat(40));
 
             if (input.equals("1")) {
                 System.out.println("You've picked Apples...");
@@ -184,7 +188,7 @@ public class Store {
                 System.out.println("You bought " + input2 + "kg grass...");
                 p.food.add(new Grass("Grass",(Integer.parseInt(input2)),200));
             }
-        } while (!input.equals("6"));
+        } while (!input.equals("0"));
         return;
 
     }
