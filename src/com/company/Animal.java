@@ -17,7 +17,7 @@ abstract public class Animal {
         this.healthPoints = 100;
 
 
-    }
+}
 
 
 

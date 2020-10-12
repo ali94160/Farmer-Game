@@ -10,6 +10,7 @@ public class Player {
     public static final String CYAN_BRIGHT = "\033[0;96m";
 
     Scanner scanner = new Scanner(System.in);
+    String input3 = "";
     String input = "";
     String input2 = "";
     public int money;
@@ -62,6 +63,7 @@ public class Player {
     }
 
     public  void deadAnimal(){
+        System.out.println("\n".repeat(15));
         for(int i = 0; i < animals.size(); i++){
             if(animals.get(i).healthPoints <= 0){
                 System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET + animals.get(i).name + ANSI_RED +" has died..." + ANSI_RESET);
@@ -70,6 +72,47 @@ public class Player {
 
         }
 
+    }
+
+
+
+    public void feedAnimal(Player p){
+        while(true){
+        System.out.println("[" + p.name + "]" + " What Animal would you like to feed?");
+            System.out.println("0. EXIT");
+            int optionCounter = 1;
+            for (Animal a : p.animals) {
+                System.out.println(optionCounter + "." + "(" + a.getClass().getSimpleName() + ")" + " " + a.name + "  "
+                        + "(" + a.gender + ")" + "  " + a.healthPoints);
+                optionCounter++;
+         }
+            input = scanner.next();
+
+            if (input.equals("0")) {
+                return;
+            }
+
+            System.out.println("What food?");
+            int optionCounter2 = 1;
+            for(int i = 0; i < p.food.size();i++) {
+                System.out.println(optionCounter2 + "." + p.food.get(i).name + " " + p.food.get(i).kilos + "kg");
+                optionCounter2++;
+            }
+
+                input3 = scanner.next();
+                    System.out.println("How many Kg?");
+                input2 = scanner.next();
+
+
+                feedTheAnimal(animals.get(Integer.parseInt(input)-1));
+                p.food.get(Integer.parseInt(input3)-1).kilos -= Integer.parseInt(input2);
+
+        }
+
+    }
+
+    public void feedTheAnimal(Animal a){
+       a.healthPoints += 10;
     }
 
 }

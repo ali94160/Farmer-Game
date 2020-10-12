@@ -62,6 +62,12 @@ public class Game {
                     case 3:
                         System.out.println("\n".repeat(25));
                         players.get(j).buyFood();
+                        break;
+
+                    case 4:
+                        System.out.println("\n".repeat(25));
+                        players.get(j).feedAnimal(players.get(j));
+                        break;
                 }
 
             }

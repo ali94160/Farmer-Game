@@ -153,6 +153,7 @@ public class Store {
             System.out.println("\n".repeat(25));
 
             if (input.equals("1")) {
+                System.out.println("You've picked Apples...");
                 System.out.println("How many KG? (minimum 1 kg)");
                 input2 = scanner.next();
                 p.money -= Integer.parseInt(input2) * 200;
@@ -163,6 +164,7 @@ public class Store {
             }
 
             if (input.equals("2")){
+                System.out.println("You've picked Carrots...");
                 System.out.println("How many KG? (minimum 1 kg)");
                 input2 = scanner.next();
                 p.money = p.money - Integer.parseInt(input2) * 200;
@@ -173,6 +175,7 @@ public class Store {
             }
 
             if(input.equals("3")){
+                System.out.println("You've picked Grass...");
                 System.out.println("How many KG? (minimum 1 kg)");
                 input2 = scanner.next();
                 p.money = p.money - Integer.parseInt(input2) * 200;
@@ -182,7 +185,7 @@ public class Store {
                 p.food.add(new Grass("Grass",(Integer.parseInt(input2)),200));
             }
         } while (!input.equals("6"));
-        System.out.println("\n".repeat(25));
+        return;
 
     }
 
