@@ -27,103 +27,135 @@ public class Game {
             playerName = scanner.next();
             players.add(new Player(playerName));
         }
-        System.out.println("\n".repeat(25));
+        System.out.println("\n".repeat(20));
         mainMenu();
     }
 
     public void mainMenu() {
-        for(int i = 0; i < roundInput; i++){
-            for(int j = 0; j < players.size(); j++){
+        for (int i = 0; i < roundInput; i++) {
+            for (int j = 0; j < players.size(); j++) {
                 roundInput++;
-                System.out.println("\n".repeat(3));
-                System.out.println(BLUE_BOLD + "Round: " + (i + 1) + RESET);
-                printMenu(players.get(j));
-                System.out.println("_".repeat(30));
-                System.out.println("1. Buy Animal");
-                System.out.println("2. Sell Animal");
-                System.out.println("3. Buy Food");
-                System.out.println("4. Feed Animals");
-                System.out.println("5. Make Animals");
-                System.out.println("_".repeat(30));
 
-                playerInput = scanner.nextInt();
+                boolean endTurn = false;
+                while (!endTurn) {
 
-                switch (playerInput){
-                    case 1:
-                        System.out.println("\n".repeat(28));
-                        players.get(j).showAnimalsInStore();
-                        break;
+                    System.out.println("\n".repeat(3));
+                    System.out.println(BLUE_BOLD + "Round: " + (i + 1) + RESET);
+                    printMenu(players.get(j));
+                    System.out.println("_".repeat(30));
+                    System.out.println("1. Buy Animal");
+                    System.out.println("2. Sell Animal");
+                    System.out.println("3. Buy Food");
+                    System.out.println("4. Feed Animals");
+                    System.out.println("5. Mate Animals");
+                    System.out.println("_".repeat(30));
 
-                    case 2:
-                        System.out.println("\n".repeat(28));
-                        players.get(j).sellAnimals(players.get(j));
-                        break;
+                    playerInput = scanner.nextInt();
 
-                    case 3:
-                        System.out.println("\n".repeat(28));
-                        players.get(j).buyFood();
-                        break;
+                    switch (playerInput) {
+                        case 1:
+                            System.out.println("\n".repeat(28));
+                            players.get(j).showAnimalsInStore();
+                            endTurn = true;
+                            break;
 
-                    case 4:
-                        System.out.println("\n".repeat(28));
-                        players.get(j).feedAnimal(players.get(j));
-                        break;
+                        case 2:
+                            System.out.println("\n".repeat(28));
+                            players.get(j).sellAnimals(players.get(j));
+                            endTurn = true;
+                            break;
 
-                    case 5:
-                        System.out.println("\n".repeat(28));
-                        players.get(j).makeAnimals();
+                        case 3:
+                            System.out.println("\n".repeat(28));
+                            players.get(j).buyFood();
+                            endTurn = true;
+                            break;
+
+                        case 4:
+                            System.out.println("\n".repeat(28));
+                            players.get(j).feedAnimal(players.get(j));
+                            endTurn = true;
+                            break;
+
+                        case 5:
+                            System.out.println("\n".repeat(28));
+                            checkAnimals(players.get(j));
+                    }
                 }
-
             }
             healthLoss();
             checkDeath();
         }
 
+    }
+
+
+    public void printMenu(Player p) {
+
+        System.out.println("[ " + p.name + " ] it's your turn:");
+        System.out.println("-".repeat(30));
+        System.out.println("Your balance: " + "$" + p.money);
+        System.out.println("-".repeat(30));
+        System.out.println("Your animals:");
+        for (Animal a : p.animals) {
+            System.out.println("(" + a.getClass().getSimpleName() + ")" + " " + a.name + "  "
+                    + "(" + a.gender + ")" + "  " + a.healthPoints + "HP");
+        }
+        System.out.println("-".repeat(30));
+        System.out.println("Your Food:");
+        for (int i = 0; i < p.food.size(); i++) {
+
+            if (p.food.get((i)).kilos == 0) {
+                p.food.remove(p.food.get(i));
+                return;
+            }
+            System.out.println(p.food.get(i).name + " " + p.food.get(i).kilos + "kg");
+
+        }
 
     }
 
 
-    public void printMenu(Player p){
-
-                System.out.println("[ " + p.name + " ] it's your turn:");
-                System.out.println("-".repeat(30));
-                System.out.println("Your balance: " + "$" + p.money);
-                System.out.println("-".repeat(30));
-                System.out.println("Your animals:");
-                for(Animal a : p.animals){
-                    System.out.println("(" + a.getClass().getSimpleName() + ")" + " " + a.name + "  "
-                            + "(" + a.gender + ")" + "  " + a.healthPoints + "HP");
-                }
-                System.out.println("-".repeat(30));
-                System.out.println("Your Food:");
-                for(int i = 0; i < p.food.size();i++){
-
-                   if(p.food.get((i)).kilos == 0) {
-                       p.food.remove(p.food.get(i));
-                       return;
-                   }
-                    System.out.println(p.food.get(i).name + " " + p.food.get(i).kilos + "kg" );
-
-                }
-
-    }
-
-
-
-    public void healthLoss(){
-       for(int i = 0; i < players.size(); i++){
-            for(int j = 0; j < players.get(i).animals.size(); j++){
-                players.get(i).animals.get(j).healthPoints -=  1 + random.nextInt(30);
+    public void healthLoss() {
+        for (int i = 0; i < players.size(); i++) {
+            for (int j = 0; j < players.get(i).animals.size(); j++) {
+                players.get(i).animals.get(j).healthPoints -= 1 + random.nextInt(30);
             }
         }
     }
 
-    public void checkDeath(){
-        for(Player p : players){
+
+    public void checkDeath() {
+        for (Player p : players) {
             p.deadAnimal();
         }
     }
 
 
+    public boolean checkAnimals(Player p) {
+        int male = 0;
+        int female = 0;
+        int co = 0;
+        if (p.animals.size() >= 2) {
+            for (int i = 0; i < p.animals.size(); i++) {
+                for (int j = 0; j < p.animals.size(); j++) {
+                    if (p.animals.get(i).getClass().getSimpleName().equals(p.animals.get(j).getClass().getSimpleName())) {
+                        co++;
+                        if(p.animals.get(i).gender.equals("male")){
+                            male++;
+                        }
+                        if(p.animals.get(i).gender.equals("female")){
+                            female++;
+                        }
+                    }
+                }
+            }
+        }
+        if(male > 0 && female > 0 && co > 0){
+            p.mateAnimals(p);
+        }
+        System.out.println("Not enough animals");
+        return true;
+    }
 
 }
