@@ -69,9 +69,7 @@ public class Player {
                 System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET + animals.get(i).name + ANSI_RED +" has died..." + ANSI_RESET);
                 animals.remove(i);
             }
-
         }
-
     }
 
 
@@ -79,7 +77,7 @@ public class Player {
     public void feedAnimal(Player p){
         while(true){
             System.out.println("\n".repeat(2));
-        System.out.println("[" + p.name + "]" + " What Animal would you like to feed?");
+        System.out.println("[" + p.name + "]" + " Which Animal would you like to feed?");
             System.out.println("-".repeat(45));
             int optionCounter = 1;
             for (Animal a : p.animals) {
@@ -96,7 +94,7 @@ public class Player {
                 return;
             }
 
-            System.out.println("What food?");
+            System.out.println("What type of food?");
             int optionCounter2 = 1;
             for(int i = 0; i < p.food.size();i++) {
                 System.out.println(optionCounter2 + "." + p.food.get(i).name + " " + p.food.get(i).kilos + "kg");
@@ -113,14 +111,30 @@ public class Player {
                 p.food.get(Integer.parseInt(input3)-1).kilos -= Integer.parseInt(input2);
             System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET +
                     animals.get(Integer.parseInt(input)-1).name + " has gained " + "+ " + (Integer.parseInt(input2) * 10) + "HP");
-
-
         }
     }
 
     public void feedTheAnimal(Animal a){
        a.healthPoints += 10 * Integer.parseInt(input2);
     }
+
+
+
+    public void makeAnimals(Player p){
+
+        System.out.println("Choose an animal to make babies with: ");
+
+        int optionCounter = 1;
+        System.out.println("0. EXIT");
+        for (Animal a : p.animals) {
+            System.out.println(optionCounter + "." + "(" + a.getClass().getSimpleName() + ")" + " " + a.name + "  "
+                    + "(" + a.gender + ")" + "  " + a.healthPoints + "HP" + " -> Sell for: $" + (a.price * a.healthPoints) / 100);
+            optionCounter++;
+        }
+
+    }
+
+
 
 }
 

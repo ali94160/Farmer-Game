@@ -68,6 +68,10 @@ public class Game {
                         System.out.println("\n".repeat(28));
                         players.get(j).feedAnimal(players.get(j));
                         break;
+
+                    case 5:
+                        System.out.println("\n".repeat(28));
+                        players.get(j).makeAnimals();
                 }
 
             }
@@ -119,6 +123,7 @@ public class Game {
             p.deadAnimal();
         }
     }
+
 
 
 }
