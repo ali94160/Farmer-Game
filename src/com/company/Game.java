@@ -15,6 +15,9 @@ public class Game {
     ArrayList<Player> players = new ArrayList<>();
 
     public Game() {
+            System.out.println("-------------------------------------");
+            System.out.println("===========| FARMER GAME |===========");
+            System.out.println("------------------------------------- \n");
 
         System.out.println("How many rounds would you like to play?");
         roundInput = scanner.nextInt();
