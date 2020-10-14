@@ -1,5 +1,6 @@
 package com.company;
 
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -15,6 +16,8 @@ public class Player {
     String input3 = "";
     String input = "";
     String input2 = "";
+    String inputName = "";
+    String inputGender = "";
     public int money;
     public String name;
     public ArrayList<Animal> animals = new ArrayList<Animal>();
@@ -121,8 +124,7 @@ public class Player {
 
 
     public void mateAnimals(Player p) {
-
-
+        // loopa genom ...
         System.out.println("STEP 1: \nChoose a (male) Animal: ");
         int optionCounter = 1;
         System.out.println("-".repeat(45));
@@ -133,12 +135,45 @@ public class Player {
         }
         System.out.println("-".repeat(45));
         System.out.println("0. EXIT");
-
         input = scanner.next();
 
 
 
+        System.out.println("STEP 2: \nChoose a (female) Animal: ");
+        int optionCounter2 = 1;
+        System.out.println("-".repeat(45));
+        for (Animal a : p.animals) {
+            System.out.println(optionCounter2 + "." + "(" + a.getClass().getSimpleName() + ")" + " " + a.name + "  "
+                    + "(" + a.gender + ")" + "  " + a.healthPoints + "HP");
+            optionCounter2++;
         }
+        System.out.println("-".repeat(45));
+        System.out.println("0. EXIT");
+        input2 = scanner.next();
+
+        if(!p.animals.get(Integer.parseInt(input)-1).gender.equals(p.animals.get(Integer.parseInt(input2)-1).gender)){
+
+            if(animals.get(Integer.parseInt(input)).getClass().getSimpleName().equals("Dog"))
+
+                System.out.print("Name your Dog: ");
+                inputName = scanner.next();
+
+                System.out.print("What gender: \n 1. Male \n 2. Female \n");
+                inputGender = scanner.next();
+                switch (inputGender) {
+                    case "1":
+                        inputGender = (String) "male";
+                        p.animals.add(new Dog(inputName, inputGender));
+                        break;
+                    case "2":
+                        inputGender = (String) "female";
+                        p.animals.add(new Dog(inputName, inputGender));
+                        break;
+                }
+
+        }
+        // false input
+    }
 
 
     }

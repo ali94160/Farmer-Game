@@ -138,7 +138,6 @@ public class Store {
 
         } while (!input.equals("0"));
         System.out.println("\n".repeat(25));
-        return;
     }
 
     public static void food(Player p){
@@ -189,7 +188,6 @@ public class Store {
                 p.food.add(new Grass("Grass",(Integer.parseInt(input2)),200));
             }
         } while (!input.equals("0"));
-        return;
 
     }
 
