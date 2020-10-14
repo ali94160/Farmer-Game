@@ -39,7 +39,7 @@ public class Game {
                 boolean endTurn = false;
                 while (!endTurn) {
 
-                    System.out.println("\n".repeat(3));
+                    System.out.println("\n".repeat(2));
                     System.out.println(BLUE_BOLD + "Round: " + (i + 1) + RESET);
                     printMenu(players.get(j));
                     System.out.println("_".repeat(30));
@@ -78,8 +78,8 @@ public class Game {
                             break;
 
                         case 5:
-                            System.out.println("\n".repeat(28));
                             checkAnimals(players.get(j));
+                            endTurn = true;
                     }
                 }
             }
@@ -154,7 +154,6 @@ public class Game {
         if(male > 0 && female > 0 && co > 0){
             p.mateAnimals(p);
         }
-        System.out.println("Not enough animals");
         return true;
     }
 

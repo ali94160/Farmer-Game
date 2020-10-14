@@ -68,7 +68,6 @@ public class Player {
     }
 
     public void deadAnimal() {
-        System.out.println("\n".repeat(15));
         for (int i = 0; i < animals.size(); i++) {
             if (animals.get(i).healthPoints <= 0) {
                 System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET + animals.get(i).name + ANSI_RED + " has died..." + ANSI_RESET);
@@ -124,7 +123,8 @@ public class Player {
 
 
     public void mateAnimals(Player p) {
-        // loopa genom ...
+        Animal typeOfAnimal;
+        System.out.println("\n".repeat(30));
         System.out.println("STEP 1: \nChoose a (male) Animal: ");
         int optionCounter = 1;
         System.out.println("-".repeat(45));
@@ -136,7 +136,7 @@ public class Player {
         System.out.println("-".repeat(45));
         System.out.println("0. EXIT");
         input = scanner.next();
-
+        typeOfAnimal = animals.get(Integer.parseInt(input)-1);
 
 
         System.out.println("STEP 2: \nChoose a (female) Animal: ");
@@ -150,31 +150,43 @@ public class Player {
         System.out.println("-".repeat(45));
         System.out.println("0. EXIT");
         input2 = scanner.next();
+        System.out.println("\n".repeat(35));
+
 
         if(!p.animals.get(Integer.parseInt(input)-1).gender.equals(p.animals.get(Integer.parseInt(input2)-1).gender)){
 
-            if(animals.get(Integer.parseInt(input)).getClass().getSimpleName().equals("Dog"))
+            int babyCount =  typeOfAnimal.maxBabies;
+            while (babyCount != 0){
+                int num = 1+random.nextInt(2);
+                if(num == 1){
+                    System.out.println("Sorry no babies!");
+                    break;
+                } else   {
 
-                System.out.print("Name your Dog: ");
+            int boyOrGirl = 1+ random.nextInt(2);
+            if (boyOrGirl == 1) {
+                System.out.println("Its a BOY!");
+                System.out.println("Name your Dog: ");
                 inputName = scanner.next();
+                p.animals.add(new Dog(inputName, "male"));
 
-                System.out.print("What gender: \n 1. Male \n 2. Female \n");
-                inputGender = scanner.next();
-                switch (inputGender) {
-                    case "1":
-                        inputGender = (String) "male";
-                        p.animals.add(new Dog(inputName, inputGender));
-                        break;
-                    case "2":
-                        inputGender = (String) "female";
-                        p.animals.add(new Dog(inputName, inputGender));
-                        break;
-                }
+                System.out.println("\n".repeat(25));
+
+            } else {
+                System.out.println("Its a GIRL!");
+                System.out.println("Name your Dog");
+                inputName = scanner.next();
+                p.animals.add(new Dog(inputName, "female"));
+
+                System.out.println("\n".repeat(25));
+            }
+            babyCount--;
+            }
+        }
 
         }
         // false input
     }
-
 
     }
 
