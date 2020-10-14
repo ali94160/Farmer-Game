@@ -153,42 +153,80 @@ public class Player {
         System.out.println("\n".repeat(35));
 
 
-        if(!p.animals.get(Integer.parseInt(input)-1).gender.equals(p.animals.get(Integer.parseInt(input2)-1).gender)){
+        if(!p.animals.get(Integer.parseInt(input)-1).gender.equals(p.animals.get(Integer.parseInt(input2)-1).gender)) {
+            // ______________
+            if (typeOfAnimal.getClass().getSimpleName().equals("Dog")) {
+                int babyCount = typeOfAnimal.maxBabies;
+                while (babyCount != 0) {
+                    int num = 1 + random.nextInt(2);
+                    if (num == 1) {
+                        System.out.println("Sorry no babies!");
+                        break;
+                    } else {
 
-            int babyCount =  typeOfAnimal.maxBabies;
-            while (babyCount != 0){
-                int num = 1+random.nextInt(2);
-                if(num == 1){
-                    System.out.println("Sorry no babies!");
-                    break;
-                } else   {
+                        int boyOrGirl = 1 + random.nextInt(2);
+                        if (boyOrGirl == 1) {
+                            System.out.println("Its a BOY!");
+                            System.out.println("Name your Dog: ");
+                            inputName = scanner.next();
+                            p.animals.add(new Dog(inputName, "male"));
 
-            int boyOrGirl = 1+ random.nextInt(2);
-            if (boyOrGirl == 1) {
-                System.out.println("Its a BOY!");
-                System.out.println("Name your Dog: ");
-                inputName = scanner.next();
-                p.animals.add(new Dog(inputName, "male"));
+                            System.out.println("\n".repeat(25));
 
-                System.out.println("\n".repeat(25));
+                        } else {
+                            System.out.println("Its a GIRL!");
+                            System.out.println("Name your Dog");
+                            inputName = scanner.next();
+                            p.animals.add(new Dog(inputName, "female"));
 
-            } else {
-                System.out.println("Its a GIRL!");
-                System.out.println("Name your Dog");
-                inputName = scanner.next();
-                p.animals.add(new Dog(inputName, "female"));
-
-                System.out.println("\n".repeat(25));
+                            System.out.println("\n".repeat(25));
+                        }
+                        babyCount--;
+                    }
+                }
             }
-            babyCount--;
+            // _____________
+            if (typeOfAnimal.getClass().getSimpleName().equals("Sheep")) {
+
+                int babyCount = typeOfAnimal.maxBabies;
+                while (babyCount != 0) {
+                    int num = 1 + random.nextInt(2);
+                    if (num == 1) {
+                        System.out.println("Sorry no babies!");
+                        break;
+                    } else {
+
+                        int boyOrGirl = 1 + random.nextInt(2);
+                        if (boyOrGirl == 1) {
+                            System.out.println("Its a BOY!");
+                            System.out.println("Name your Sheep: ");
+                            inputName = scanner.next();
+                            p.animals.add(new Dog(inputName, "male"));
+
+                            System.out.println("\n".repeat(25));
+
+                        } else {
+                            System.out.println("Its a GIRL!");
+                            System.out.println("Name your Sheep");
+                            inputName = scanner.next();
+                            p.animals.add(new Dog(inputName, "female"));
+
+                            System.out.println("\n".repeat(25));
+                        }
+                        babyCount--;
+                    }
+                }
             }
+
+            }
+
         }
+
+
 
         }
         // false input
-    }
 
-    }
 
 
 
