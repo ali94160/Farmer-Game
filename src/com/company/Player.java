@@ -45,6 +45,7 @@ public class Player {
             input = scanner.next();
 
             if (input.equals("0")) {
+                System.out.println("\n".repeat(30));
                 return;
             }
             animalSold(animals.get(Integer.parseInt(input) - 1));
@@ -94,6 +95,7 @@ public class Player {
             input = scanner.next();
 
             if (input.equals("0")) {
+                System.out.println("\n".repeat(25));
                 return;
             }
 
@@ -107,7 +109,7 @@ public class Player {
             input3 = scanner.next();
             System.out.println("How many Kg?");
             input2 = scanner.next();
-            System.out.println("\n".repeat(25));
+            System.out.println("\n".repeat(30));
 
 
             feedTheAnimal(animals.get(Integer.parseInt(input) - 1));

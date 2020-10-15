@@ -4,7 +4,11 @@ public class Game {
 
     // Colors for output
     public static final String BLUE_BOLD = "\033[1;34m";
+    public static final String ANSI_GREEN = "\u001B[32m";
+    public static final String ANSI_YELLOW = "\u001B[33m";
+    public static final String CYAN_BRIGHT = "\033[0;96m";
     public static final String RESET = "\033[0m";
+
 
     Scanner scanner = new Scanner(System.in);
     Random random = new Random();
@@ -23,20 +27,31 @@ public class Game {
         while (true) {
             try {
                 roundInput = scanner.nextInt();
-                if(roundInput >= 5 && roundInput <= 30){
+                if (roundInput >= 5 && roundInput <= 30) {
                     break;
                 }
-                System.out.println("Must be between 5-30... Try again: ");
+              System.out.println("Must be between 5-30... Try again: ");
 
-            } catch (Exception e){
+            } catch (Exception e) {
                 System.out.println("Must be between 5-30... Try again: ");
                 scanner.next();
             }
+
         }
 
-
+        while (true) {
             System.out.println("How many players?");
-            playerInput = scanner.nextInt();
+            try {
+                playerInput = scanner.nextInt();
+                if (playerInput >= 1 && playerInput <= 4) {
+                    break;
+                }
+                System.out.println("Must be between 1-4 players... Try again: ");
+            } catch (Exception e) {
+                System.out.println("Must be between 1-4 players... Try again: ");
+                scanner.next();
+            }
+        }
 
             for (int i = 0; i < playerInput; i++) {
             System.out.println("Player " + (i + 1) +
@@ -68,7 +83,18 @@ public class Game {
                     System.out.println("5. Mate Animals");
                     System.out.println("_".repeat(30));
 
-                    playerInput = scanner.nextInt();
+                    while(true) {
+                        try {
+                            playerInput = scanner.nextInt();
+                            if(playerInput >= 1 && playerInput <= 5){
+                                break;
+                            }
+                        } catch (Exception e) {
+                            System.out.println("Invalid input");
+                            scanner.next();
+
+                        }
+                    }
 
                     switch (playerInput) {
                         case 1:
@@ -78,10 +104,17 @@ public class Game {
                             break;
 
                         case 2:
-                            System.out.println("\n".repeat(28));
-                            players.get(j).sellAnimals(players.get(j));
-                            endTurn = true;
-                            break;
+
+                            if(players.get(i).animals.size()-1 <= 0) {
+                                System.out.println("\n".repeat(20));
+                                System.out.println("You don't have any animals");
+                                break;
+                            } else if (players.get(i).animals.size()-1 >= 1) {
+                                System.out.println("\n".repeat(28));
+                                players.get(j).sellAnimals(players.get(j));
+                                endTurn = true;
+                                break;
+                            }
 
                         case 3:
                             System.out.println("\n".repeat(28));
@@ -186,14 +219,20 @@ public class Game {
                 }
             }
         Player winner = players.get(0);
+        Player secondPlace = players.get(0);
         for(int i = 0; i < players.size(); i++){
             for(int j = 0; j < players.size(); j++){
                 if(players.get(i).money > players.get(j).money){
                     winner = players.get(i);
+                    secondPlace = players.get(j);
                 }
             }
         }
-        System.out.println("The winner is: " + winner.name + "With: " + winner.money);
+        System.out.println(ANSI_GREEN + "Winner Winner Chicken Dinner! " + RESET + CYAN_BRIGHT + winner.name + RESET + "! " +
+                "Your total balance is: $" +ANSI_YELLOW + winner.money + RESET);
+
+        System.out.println("Second place is: " + CYAN_BRIGHT + secondPlace.name + RESET + " " +
+                "your total balance is: $" + ANSI_YELLOW + secondPlace.money + RESET);
         }
     }
 
