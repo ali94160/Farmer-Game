@@ -15,29 +15,44 @@ public class Game {
     ArrayList<Player> players = new ArrayList<>();
 
     public Game() {
-            System.out.println("-------------------------------------");
-            System.out.println("===========| FARMER GAME |===========");
-            System.out.println("------------------------------------- \n");
+        System.out.println("-------------------------------------");
+        System.out.println("===========| FARMER GAME |===========");
+        System.out.println("------------------------------------- \n");
 
         System.out.println("How many rounds would you like to play?");
-        roundInput = scanner.nextInt();
-        System.out.println("How many players?");
-        playerInput = scanner.nextInt();
+        while (true) {
+            try {
+                roundInput = scanner.nextInt();
+                if(roundInput >= 5 && roundInput <= 30){
+                    break;
+                }
+                System.out.println("Must be between 5-30... Try again: ");
 
-        for (int i = 0; i < playerInput; i++) {
+            } catch (Exception e){
+                System.out.println("Must be between 5-30... Try again: ");
+                scanner.next();
+            }
+        }
+
+
+            System.out.println("How many players?");
+            playerInput = scanner.nextInt();
+
+            for (int i = 0; i < playerInput; i++) {
             System.out.println("Player " + (i + 1) +
                     ", Enter your name:");
             playerName = scanner.next();
             players.add(new Player(playerName));
         }
-        System.out.println("\n".repeat(20));
-        mainMenu();
+            System.out.println("\n".repeat(20));
+            mainMenu();
+
     }
 
     public void mainMenu() {
         for (int i = 0; i < roundInput; i++) {
             for (int j = 0; j < players.size(); j++) {
-                roundInput++;
+
 
                 boolean endTurn = false;
                 while (!endTurn) {
@@ -89,7 +104,7 @@ public class Game {
             healthLoss();
             checkDeath();
         }
-
+        andTheWinnerIs();
     }
 
 
@@ -160,4 +175,26 @@ public class Game {
         return true;
     }
 
-}
+
+    public void andTheWinnerIs(){
+
+
+        for(int i = 0; i < players.size(); i++){
+            for(int j = 0; j < players.get(i).animals.size(); j++){
+                players.get(i).animalSold(players.get(i).animals.get(j));
+
+                }
+            }
+        Player winner = players.get(0);
+        for(int i = 0; i < players.size(); i++){
+            for(int j = 0; j < players.size(); j++){
+                if(players.get(i).money > players.get(j).money){
+                    winner = players.get(i);
+                }
+            }
+        }
+        System.out.println("The winner is: " + winner.name + "With: " + winner.money);
+        }
+    }
+
+

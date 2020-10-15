@@ -6,6 +6,6 @@ public class Sheep extends Animal{
     public Sheep(String name, String gender) {
         super(name, gender);
         this.price = 2000;
-        maxBabies = 3;
+        maxBabies = 2;
     }
 }

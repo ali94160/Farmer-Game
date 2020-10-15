@@ -47,7 +47,7 @@ public class Player {
             if (input.equals("0")) {
                 return;
             }
-            sellAnimal(animals.get(Integer.parseInt(input) - 1));
+            animalSold(animals.get(Integer.parseInt(input) - 1));
             animals.remove(Integer.parseInt(input) - 1);
         }
     }
@@ -62,7 +62,7 @@ public class Player {
         Store.food(this);
     }
 
-    public void sellAnimal(Animal a) {
+    public void animalSold(Animal a) {
         int profit = (a.healthPoints * a.price) / 100;
         money += profit;
     }
