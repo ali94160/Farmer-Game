@@ -94,7 +94,7 @@ public class Store {
 
 
             if (input.equals("4")) {
-                p.money = (p.money - 2000);
+                p.money = (p.money - 2500);
                 System.out.println("Name your Sheep: ");
                 input = scanner.next();
                 System.out.print("What gender: \n 1. Male \n 2. Female \n");
@@ -116,7 +116,7 @@ public class Store {
 
 
             if (input.equals("5")) {
-                p.money = (p.money - 2000);
+                p.money = (p.money - 3000);
                 System.out.println("Name your Cow: ");
                 input = scanner.next();
                 System.out.print("What gender: \n 1. Male \n 2. Female \n");
@@ -148,9 +148,9 @@ public class Store {
             System.out.println("Balance: " + "$" + p.money);
             System.out.println("[" + p.name + "]" + " What Animal would you like to buy?");
             System.out.println("-".repeat(41));
-            System.out.println("1. Apples  | cost: $200 |");
-            System.out.println("2. Carrots | cost: $200 |");
-            System.out.println("3. Grass   | cost: $200 |");
+            System.out.println("1. Apples  | cost: $50 |");
+            System.out.println("2. Carrots | cost: $50 |");
+            System.out.println("3. Grass   | cost: $40 |");
             System.out.println("-".repeat(41));
             System.out.println("0. EXIT THE SHOP");
             input = scanner.next();
@@ -160,33 +160,33 @@ public class Store {
                 System.out.println("You've picked Apples...");
                 System.out.println("How many KG? (minimum 1 kg)");
                 input2 = scanner.next();
-                p.money -= Integer.parseInt(input2) * 200;
+                p.money -= Integer.parseInt(input2) * 50;
                 checkFood("Apple",p);
                 System.out.println("\n".repeat(25));
                 System.out.println("You bought " + input2 + "kg apples...");
-                p.food.add(new Apples("Apple", (Integer.parseInt(input2)), 200));
+                p.food.add(new Apples("Apple", (Integer.parseInt(input2)), 50));
             }
 
             if (input.equals("2")){
                 System.out.println("You've picked Carrots...");
                 System.out.println("How many KG? (minimum 1 kg)");
                 input2 = scanner.next();
-                p.money = p.money - Integer.parseInt(input2) * 200;
+                p.money = p.money - Integer.parseInt(input2) * 50;
                 checkFood("Carrot",p);
                 System.out.println("\n".repeat(25));
                 System.out.println("You bought " + input2 + "kg carrots...");
-                p.food.add(new Carrots("Carrot",(Integer.parseInt(input2)),200));
+                p.food.add(new Carrots("Carrot",(Integer.parseInt(input2)),50));
             }
 
             if(input.equals("3")){
                 System.out.println("You've picked Grass...");
                 System.out.println("How many KG? (minimum 1 kg)");
                 input2 = scanner.next();
-                p.money = p.money - Integer.parseInt(input2) * 200;
+                p.money = p.money - Integer.parseInt(input2) * 40;
                 checkFood("Grass", p);
                 System.out.println("\n".repeat(25));
                 System.out.println("You bought " + input2 + "kg grass...");
-                p.food.add(new Grass("Grass",(Integer.parseInt(input2)),200));
+                p.food.add(new Grass("Grass",(Integer.parseInt(input2)),40));
             }
         } while (!input.equals("0"));
 
