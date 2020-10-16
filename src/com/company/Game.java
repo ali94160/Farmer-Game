@@ -104,17 +104,15 @@ public class Game {
                             break;
 
                         case 2:
-
-                            if(players.get(i).animals.size()-1 <= 0) {
+                            if(players.get(j).animals.size() <= 0) {
                                 System.out.println("\n".repeat(20));
-                                System.out.println("You don't have any animals");
+                                System.out.println(CYAN_BRIGHT + "[Game]:" + RESET + " You don't have any animals");
                                 break;
-                            } else if (players.get(i).animals.size()-1 >= 1) {
+                            } else if (players.get(j).animals.size() >= 1) {
                                 System.out.println("\n".repeat(28));
                                 players.get(j).sellAnimals(players.get(j));
                                 endTurn = true;
-                                break;
-                            }
+                            } break;
 
                         case 3:
                             System.out.println("\n".repeat(28));
