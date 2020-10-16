@@ -19,34 +19,35 @@ public class Store {
             System.out.println("Balance: " + "$" + p.money);
             System.out.println("[" + p.name + "]" + " What Animal would you like to buy?");
             System.out.println("-".repeat(41));
-            System.out.println("1. Sheep  | cost: $2000 |");
-            System.out.println("2. Dog    | cost: $2000 |");
-            System.out.println("3. Cow    | cost: $2000 |");
-            System.out.println("4. Cat    | cost: $2000 |");
-            System.out.println("5. Rabbit | cost: $2000 |");
+            System.out.println("| ANIMALS | PRICE | MAX CHILD | MAX AGE |");
+            System.out.println("1. Rabbit | $1000 |   5       |    5    |");
+            System.out.println("2. Dog    | $2000 |   3       |    10   |");
+            System.out.println("3. Cat    | $2000 |   3       |    10   |");
+            System.out.println("4. Sheep  | $2500 |   2       |    12   |");
+            System.out.println("5. Cow    | $3000 |   2       |    16   |");
             System.out.println("-".repeat(41));
             System.out.println("0. EXIT THE SHOP");
             input = scanner.next();
 
             if (input.equals("1")) {
-                p.money = (p.money - 2000);
-                System.out.print("Name your Sheep: ");
+                p.money = (p.money - 1000);
+                System.out.print("Name your Rabbit: ");
                 input = scanner.next();
                 System.out.print("What gender: \n 1. Male \n 2. Female \n");
                 input2 = scanner.next();
                 switch (input2) {
                     case "1":
                         input2 = (String) "male";
-                        p.animals.add(new Sheep(input, input2));
+                        p.animals.add(new Rabbit(input, input2));
                         break;
                     case "2":
                         input2 = (String) "female";
-                        p.animals.add(new Sheep(input, input2));
+                        p.animals.add(new Rabbit(input, input2));
                         break;
                 }
                 System.out.println("\n".repeat(25));
                 System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET + ANSI_GREEN+
-                        "You've purchased a Sheep" + " " + "(" + input2 + ")" + " for $2000 \n"+ ANSI_RESET);
+                        "You've purchased a Rabbit" + " " + "(" + input2 + ")" + " for $1000 \n"+ ANSI_RESET);
             }
             if (input.equals("2")) {
                 p.money = (p.money - 2000);
@@ -72,67 +73,67 @@ public class Store {
 
             if (input.equals("3")) {
                 p.money = (p.money - 2000);
-                System.out.print("Name your Cow: ");
+                System.out.print("Name your Cat: ");
                 input = scanner.next();
                 System.out.print("What gender: \n 1. Male \n 2. Female \n");
                 input2 = scanner.next();
                 switch (input2) {
                     case "1":
                         input2 = (String) "male";
-                        p.animals.add(new Cow(input, input2));
+                        p.animals.add(new Cat(input, input2));
                         break;
                     case "2":
                         input2 = (String) "female";
-                        p.animals.add(new Cow(input, input2));
+                        p.animals.add(new Cat(input, input2));
                         break;
                 }
                 System.out.println("\n".repeat(25));
                 System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET + ANSI_GREEN+
-                        "You've purchased a Cow" + " " + "(" + input2 + ")" + " for $2000 \n"+ ANSI_RESET);
+                        "You've purchased a Cat" + " " + "(" + input2 + ")" + " for $2000 \n"+ ANSI_RESET);
             }
 
 
             if (input.equals("4")) {
                 p.money = (p.money - 2000);
-                System.out.println("Name your Cat: ");
+                System.out.println("Name your Sheep: ");
                 input = scanner.next();
                 System.out.print("What gender: \n 1. Male \n 2. Female \n");
                 input2 = scanner.next();
                 switch (input2) {
                     case "1":
                         input2 = (String) "male";
-                        p.animals.add(new Cat(input, input2));
+                        p.animals.add(new Sheep(input, input2));
                         break;
                     case "2":
                         input2 = (String) "female";
-                        p.animals.add(new Cat(input, input2));
+                        p.animals.add(new Sheep(input, input2));
                         break;
                 }
                 System.out.println("\n".repeat(25));
                 System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET + ANSI_GREEN+
-                    "You've purchased a Cat" + " " + "(" + input2 + ")" + " for $2000 \n"+ ANSI_RESET);
+                    "You've purchased a Sheep" + " " + "(" + input2 + ")" + " for $2500 \n"+ ANSI_RESET);
             }
 
 
             if (input.equals("5")) {
                 p.money = (p.money - 2000);
-                System.out.println("Name your Rabbit: ");
+                System.out.println("Name your Cow: ");
                 input = scanner.next();
                 System.out.print("What gender: \n 1. Male \n 2. Female \n");
                 input2 = scanner.next();
                 switch (input2) {
                     case "1":
                         input2 = (String) "male";
-                        p.animals.add(new Rabbit(input, input2));
+                        p.animals.add(new Cow(input, input2));
                         break;
                     case "2":
                         input2 = (String) "female";
-                        p.animals.add(new Rabbit(input, input2));
+                        p.animals.add(new Cow(input, input2));
                         break;
                 }
                 System.out.println("\n".repeat(25));
                 System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET + ANSI_GREEN+
-                        "You've purchased a Rabbit" + " " + "(" + input2 + ")" + " for $2000 \n"+ ANSI_RESET);
+                        "You've purchased a Cow" + " " + "(" + input2 + ")" + " for $3000 \n"+ ANSI_RESET);
             }
 
 
