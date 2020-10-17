@@ -125,11 +125,10 @@ public class Player {
             System.out.println("0. EXIT");
 
             input = scanner.next();
-            if (input.equals("0")) { // Bug
+            if (input.equals("0")) {
                 System.out.println("\n".repeat(25));
                 return;
             }
-            // if(p.animals.get(Integer.parseInt(input)-1).getClass().getSimpleName().equals("Rabbit")){ }
 
             System.out.println("What type of food?");
             int optionCounter2 = 1;

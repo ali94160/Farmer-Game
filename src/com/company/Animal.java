@@ -21,6 +21,7 @@ abstract public class Animal {
         this.eats = eats;
 
 
+
 }
 
 
