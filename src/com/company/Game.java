@@ -153,6 +153,7 @@ public class Game {
         System.out.println("-".repeat(30));
         System.out.println("Your animals:");
         for (Animal a : p.animals) {
+
             System.out.println("(" + a.getClass().getSimpleName() + ")" + " " + a.name + "  "
                     + "(" + a.gender + ")" + "  " + a.healthPoints + "HP");
         }

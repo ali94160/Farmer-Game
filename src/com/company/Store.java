@@ -11,6 +11,7 @@ public class Store {
     static Scanner scanner = new Scanner(System.in);
     static String input = "";
     static String input2 = "";
+    private static Object Carrots;
 
     public static void buyAnimal(Player p){
 
@@ -38,11 +39,11 @@ public class Store {
                 switch (input2) {
                     case "1":
                         input2 = (String) "male";
-                        p.animals.add(new Rabbit(input, input2));
+                        p.animals.add(new Rabbit(input, input2, "Carrot"));
                         break;
                     case "2":
                         input2 = (String) "female";
-                        p.animals.add(new Rabbit(input, input2));
+                        p.animals.add(new Rabbit(input, input2, "Carrot"));
                         break;
                 }
                 System.out.println("\n".repeat(25));
@@ -58,11 +59,11 @@ public class Store {
                 switch (input2) {
                     case "1":
                         input2 = (String) "male";
-                        p.animals.add(new Dog(input, input2));
+                        p.animals.add(new Dog(input, input2,"Apple"));
                         break;
                     case "2":
                         input2 = (String) "female";
-                        p.animals.add(new Dog(input, input2));
+                        p.animals.add(new Dog(input, input2, "Apple"));
                         break;
                 }
                 System.out.println("\n".repeat(25));
@@ -80,11 +81,11 @@ public class Store {
                 switch (input2) {
                     case "1":
                         input2 = (String) "male";
-                        p.animals.add(new Cat(input, input2));
+                        p.animals.add(new Cat(input, input2, "Apple"));
                         break;
                     case "2":
                         input2 = (String) "female";
-                        p.animals.add(new Cat(input, input2));
+                        p.animals.add(new Cat(input, input2, "Apple"));
                         break;
                 }
                 System.out.println("\n".repeat(25));
@@ -102,11 +103,11 @@ public class Store {
                 switch (input2) {
                     case "1":
                         input2 = (String) "male";
-                        p.animals.add(new Sheep(input, input2));
+                        p.animals.add(new Sheep(input, input2, "Grass"));
                         break;
                     case "2":
                         input2 = (String) "female";
-                        p.animals.add(new Sheep(input, input2));
+                        p.animals.add(new Sheep(input, input2, "Grass"));
                         break;
                 }
                 System.out.println("\n".repeat(25));
@@ -124,11 +125,11 @@ public class Store {
                 switch (input2) {
                     case "1":
                         input2 = (String) "male";
-                        p.animals.add(new Cow(input, input2));
+                        p.animals.add(new Cow(input, input2, "Grass"));
                         break;
                     case "2":
                         input2 = (String) "female";
-                        p.animals.add(new Cow(input, input2));
+                        p.animals.add(new Cow(input, input2, "Grass"));
                         break;
                 }
                 System.out.println("\n".repeat(25));

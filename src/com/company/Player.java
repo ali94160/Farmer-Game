@@ -78,34 +78,21 @@ public class Player {
     }
 
 
-    public void feedAnimal(Player p) {
-        while (true) {
-            System.out.println("\n".repeat(2));
-            System.out.println("[" + p.name + "]" + " Which Animal would you like to feed?");
-            System.out.println("-".repeat(45));
-            int optionCounter = 1;
-            for (Animal a : p.animals) {
-                System.out.println(optionCounter + "." + "(" + a.getClass().getSimpleName() + ")" + " " + a.name + "  "
-                        + "(" + a.gender + ")" + "  " + a.healthPoints);
-                optionCounter++;
-            }
-            System.out.println("-".repeat(45));
-            System.out.println("0. EXIT");
+    public void checkRabbitFood(Player p){
+        while(true){
 
-            input = scanner.next();
+            System.out.println("What type of food???");
 
-            if (input.equals("0")) {
-                System.out.println("\n".repeat(25));
-                return;
-            }
-
-            System.out.println("What type of food?");
             int optionCounter2 = 1;
-            for (int i = 0; i < p.food.size(); i++) {
+            for(int i = 0; i < p.food.size(); i++){
+                if(p.food.get(i).name.equals("Apple"))   {
+                    continue;
+                } else if(p.food.get(i).name.equals("Grass")){
+                    continue;
+                }
                 System.out.println(optionCounter2 + "." + p.food.get(i).name + " " + p.food.get(i).kilos + "kg");
                 optionCounter2++;
             }
-
             input3 = scanner.next();
             System.out.println("How many Kg?");
             input2 = scanner.next();
@@ -116,12 +103,78 @@ public class Player {
             p.food.get(Integer.parseInt(input3) - 1).kilos -= Integer.parseInt(input2);
             System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET +
                     animals.get(Integer.parseInt(input) - 1).name + " has gained " + "+ " + (Integer.parseInt(input2) * 10) + "HP");
+            break;
+        }
+    }
+
+
+    public void feedAnimal(Player p) {
+
+        while (true) {
+            System.out.println("\n".repeat(2));
+            System.out.println("[" + p.name + "]" + " Which Animal would you like to feed?");
+            System.out.println("-".repeat(45));
+            int optionCounter = 1;
+            for (Animal a : p.animals) {
+                System.out.println(optionCounter + "." + "(" + a.getClass().getSimpleName() + ")" + " " + a.name + "  "
+                        + "(" + a.gender + ")" + "  " + a.healthPoints);
+                optionCounter++;
+            }
+
+            System.out.println("-".repeat(45));
+            System.out.println("0. EXIT");
+
+            input = scanner.next();
+            if (input.equals("0")) { // Bug
+                System.out.println("\n".repeat(25));
+                return;
+            }
+            // if(p.animals.get(Integer.parseInt(input)-1).getClass().getSimpleName().equals("Rabbit")){ }
+
+            System.out.println("What type of food?");
+            int optionCounter2 = 1;
+            for (int i = 0; i < p.food.size(); i++) {
+                if (p.food.get(i).kilos < 1) {
+                    p.food.remove(i);
+                }
+                System.out.println(optionCounter2 + "." + p.food.get(i).name + " " + p.food.get(i).kilos + "kg");
+                optionCounter2++;
+            }
+
+            input3 = scanner.next();
+            if (input3.equals("0")) {
+                System.out.println("\n".repeat(25));
+                break;
+            }
+
+            if (p.food.get(Integer.parseInt(input3) - 1).name.equals(p.animals.get(Integer.parseInt(input) - 1).eats)) {
+
+                System.out.println("How many Kg?");
+                input2 = scanner.next();
+                System.out.println("\n".repeat(30));
+
+                feedTheAnimal(animals.get(Integer.parseInt(input) - 1));
+                p.food.get(Integer.parseInt(input3) - 1).kilos -= Integer.parseInt(input2);
+                for (int i = 0; i < p.animals.size(); i++) {
+                    if (p.animals.get(i).healthPoints < 1) {
+                        animals.remove(i);
+                    }
+                }
+                System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET +
+                        animals.get(Integer.parseInt(input) - 1).name + " has gained " + "+ " + (Integer.parseInt(input2) * 10) + "HP");
+
+            } else if (!p.food.get(Integer.parseInt(input3) - 1).name.equals(p.animals.get(Integer.parseInt(input) - 1).eats)) {
+                System.out.println("Dont eat that type of food.");
+            }
+
+
         }
     }
 
     public void feedTheAnimal(Animal a) {
         a.healthPoints += 10 * Integer.parseInt(input2);
     }
+
 
 
     public void mateAnimals(Player p) {
@@ -173,7 +226,7 @@ public class Player {
                                 System.out.println(ANSI_GREEN + "Congratulation!" + ANSI_RESET + " Its a BOY!");
                                 System.out.print("Name your Sheep: ");
                                 inputName = scanner.next();
-                                p.animals.add(new Dog(inputName, "male"));
+                                p.animals.add(new Dog(inputName, "male","Apple"));
 
                                 System.out.println("\n".repeat(25));
 
@@ -181,7 +234,7 @@ public class Player {
                                 System.out.println(ANSI_GREEN + "Congratulation!" + ANSI_RESET + " Its a GIRL!");
                                 System.out.print("Name your Sheep: ");
                                 inputName = scanner.next();
-                                p.animals.add(new Dog(inputName, "female"));
+                                p.animals.add(new Dog(inputName, "female","Grass"));
 
                                 System.out.println("\n".repeat(25));
                             }
@@ -205,7 +258,7 @@ public class Player {
                                 System.out.println(ANSI_GREEN + "Congratulation!" + ANSI_RESET + " Its a BOY!");
                                 System.out.println("Name your Dog: ");
                                 inputName = scanner.next();
-                                p.animals.add(new Dog(inputName, "male"));
+                                p.animals.add(new Dog(inputName, "male","Apple"));
 
                                 System.out.println("\n".repeat(25));
 
@@ -213,7 +266,7 @@ public class Player {
                                 System.out.println(ANSI_GREEN + "Congratulation!" + ANSI_RESET + " Its a GIRL!");
                                 System.out.println("Name your Dog");
                                 inputName = scanner.next();
-                                p.animals.add(new Dog(inputName, "female"));
+                                p.animals.add(new Dog(inputName, "female","Apple"));
 
                                 System.out.println("\n".repeat(25));
                             }
@@ -238,7 +291,7 @@ public class Player {
                                 System.out.println(ANSI_GREEN + "Congratulation!" + ANSI_RESET + " Its a BOY!");
                                 System.out.println("Name your Cat: ");
                                 inputName = scanner.next();
-                                p.animals.add(new Dog(inputName, "male"));
+                                p.animals.add(new Dog(inputName, "male","Apple"));
 
                                 System.out.println("\n".repeat(25));
 
@@ -246,7 +299,7 @@ public class Player {
                                 System.out.println(ANSI_GREEN + "Congratulation!" + ANSI_RESET + " Its a GIRL!");
                                 System.out.println("Name your Cat");
                                 inputName = scanner.next();
-                                p.animals.add(new Dog(inputName, "female"));
+                                p.animals.add(new Dog(inputName, "female","Apple"));
 
                                 System.out.println("\n".repeat(25));
                             }
@@ -271,7 +324,7 @@ public class Player {
                                 System.out.println(ANSI_GREEN + "Congratulation!" + ANSI_RESET + " Its a BOY!");
                                 System.out.println("Name your Cow: ");
                                 inputName = scanner.next();
-                                p.animals.add(new Dog(inputName, "male"));
+                                p.animals.add(new Dog(inputName, "male","Grass"));
 
                                 System.out.println("\n".repeat(25));
 
@@ -279,7 +332,7 @@ public class Player {
                                 System.out.println(ANSI_GREEN + "Congratulation!" + ANSI_RESET + " Its a GIRL!");
                                 System.out.println("Name your Cow");
                                 inputName = scanner.next();
-                                p.animals.add(new Dog(inputName, "female"));
+                                p.animals.add(new Dog(inputName, "female", "Grass"));
 
                                 System.out.println("\n".repeat(25));
                             }
@@ -303,7 +356,7 @@ public class Player {
                                 System.out.println(ANSI_GREEN + "Congratulation!" + ANSI_RESET + " Its a BOY!");
                                 System.out.println("Name your Rabbit: ");
                                 inputName = scanner.next();
-                                p.animals.add(new Dog(inputName, "male"));
+                                p.animals.add(new Dog(inputName, "male","Carrot"));
 
                                 System.out.println("\n".repeat(25));
 
@@ -311,7 +364,7 @@ public class Player {
                                 System.out.println(ANSI_GREEN + "Congratulation!" + ANSI_RESET + " Its a GIRL!");
                                 System.out.println("Name your Rabbit");
                                 inputName = scanner.next();
-                                p.animals.add(new Dog(inputName, "female"));
+                                p.animals.add(new Dog(inputName, "female", "Carrot"));
 
                                 System.out.println("\n".repeat(25));
                             }
