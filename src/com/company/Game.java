@@ -133,6 +133,17 @@ public class Game {
 
 
                         case 5:
+                            for(int k = 0; k < players.get(j).animals.size(); k++) {
+
+                                if (players.get(j).animals.size() >= 2) {
+                                    System.out.println("Need atleast 2 animals");
+
+                                for (int h = 0; h < players.get(j).animals.size(); h++) {
+                                    if(players.get(j).animals.get(h).gender.equals())
+                                }
+                            }
+                            }
+
                             checkAnimals(players.get(j));
                             endTurn = true;
                     }
@@ -186,7 +197,6 @@ public class Game {
             p.deadAnimal();
         }
     }
-
 
     public boolean checkAnimals(Player p) {
         int male = 0;

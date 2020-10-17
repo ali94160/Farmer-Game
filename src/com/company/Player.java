@@ -163,7 +163,9 @@ public class Player {
                         animals.get(Integer.parseInt(input) - 1).name + " has gained " + "+ " + (Integer.parseInt(input2) * 10) + "HP");
 
             } else if (!p.food.get(Integer.parseInt(input3) - 1).name.equals(p.animals.get(Integer.parseInt(input) - 1).eats)) {
-                System.out.println("Dont eat that type of food.");
+                System.out.println("\n".repeat(25));
+                System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET +
+                        animals.get(Integer.parseInt(input)-1).getClass().getSimpleName() + "'s don't eat that kind of food..");
             }
 
 
@@ -216,7 +218,6 @@ public class Player {
                     while (babyCount != 0) {
                         int num = 1 + random.nextInt(2);
                         if (num == 1) {
-                            System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET + "Sorry, didn't mate any/more animals this time..");
                             break;
                         } else {
 
@@ -239,6 +240,8 @@ public class Player {
                             }
                             babyCount--;
                         }
+                    } if(babyCount == 2) {
+                        System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET + "Sorry, didn't mate any animals this time..");
                     }
                 }
 
@@ -248,7 +251,6 @@ public class Player {
                     while (babyCount != 0) {
                         int num = 1 + random.nextInt(2);
                         if (num == 1) {
-                            System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET + "Sorry, didn't mate any/more animals this time..");
                             break;
                         } else {
 
@@ -271,6 +273,8 @@ public class Player {
                             }
                             babyCount--;
                         }
+                    } if(babyCount == 3) {
+                        System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET + "Sorry, didn't mate any animals this time..");
                     }
                 }
 
@@ -281,7 +285,6 @@ public class Player {
                     while (babyCount != 0) {
                         int num = 1 + random.nextInt(2);
                         if (num == 1) {
-                            System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET + "Sorry, didn't mate any/more animals this time..");
                             break;
                         } else {
 
@@ -304,6 +307,8 @@ public class Player {
                             }
                             babyCount--;
                         }
+                    } if(babyCount == 3) {
+                        System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET + "Sorry, didn't mate any animals this time..");
                     }
                 }
 
@@ -314,7 +319,6 @@ public class Player {
                     while (babyCount != 0) {
                         int num = 1 + random.nextInt(2);
                         if (num == 1) {
-                            System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET + "Sorry, didn't mate any/more animals this time..");
                             break;
                         } else {
 
@@ -337,6 +341,8 @@ public class Player {
                             }
                             babyCount--;
                         }
+                    } if(babyCount == 2) {
+                        System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET + "Sorry, didn't mate any animals this time..");
                     }
                 }
 
@@ -346,7 +352,6 @@ public class Player {
                     while (babyCount != 0) {
                         int num = 1 + random.nextInt(2);
                         if (num == 1) {
-                            System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET + "Sorry, didn't mate any/more animals this time..");
                             break;
                         } else {
 
@@ -369,6 +374,8 @@ public class Player {
                             }
                             babyCount--;
                         }
+                    }if(babyCount == 5) {
+                        System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET + "Sorry, didn't mate any animals this time..");
                     }
                 }
             }
