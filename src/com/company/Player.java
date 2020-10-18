@@ -261,6 +261,7 @@ public class Player {
                     }
                     if (babyCount == 2) {
                         System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET + "Sorry, didn't mate any animals this time..");
+                        break;
                     }
                 }
 
@@ -295,6 +296,7 @@ public class Player {
                     }
                     if (babyCount == 3) {
                         System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET + "Sorry, didn't mate any animals this time..");
+                        break;
                     }
                 }
 
@@ -330,6 +332,7 @@ public class Player {
                     }
                     if (babyCount == 3) {
                         System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET + "Sorry, didn't mate any animals this time..");
+                        break;
                     }
                 }
 
@@ -365,6 +368,7 @@ public class Player {
                     }
                     if (babyCount == 2) {
                         System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET + "Sorry, didn't mate any animals this time..");
+                        break;
                     }
                 }
 
@@ -397,6 +401,7 @@ public class Player {
                     }
                     if (babyCount == 5) {
                         System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET + "Sorry, didn't mate any animals this time..");
+                        break;
                     }
                 }
             }
