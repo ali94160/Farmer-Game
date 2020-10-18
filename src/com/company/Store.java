@@ -149,9 +149,9 @@ public class Store {
             System.out.println("Balance: " + "$" + p.money);
             System.out.println("[" + p.name + "]" + " What Animal would you like to buy?");
             System.out.println("-".repeat(41));
-            System.out.println("1. Apples  | cost: $50 |");
-            System.out.println("2. Carrots | cost: $50 |");
-            System.out.println("3. Grass   | cost: $40 |");
+            System.out.println("1. Apples  | cost: $50 | Dog/Cat");
+            System.out.println("2. Carrots | cost: $50 | Rabbit");
+            System.out.println("3. Grass   | cost: $40 | Sheep/Cow");
             System.out.println("-".repeat(41));
             System.out.println("0. EXIT THE SHOP");
             input = scanner.next();

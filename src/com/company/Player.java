@@ -11,6 +11,13 @@ public class Player {
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String CYAN_BRIGHT = "\033[0;96m";
 
+    public static final String RED_BOLD = "\033[1;31m";    // Bold RED
+    public static final String GREEN_BOLD = "\033[1;32m";  // Bold GREEN
+    public static final String YELLOW_BOLD = "\033[1;33m"; // Bold YELLOW
+    public static final String BLUE_BOLD = "\033[1;34m";   // Bold BLUE
+    public static final String PURPLE_BOLD = "\033[1;35m"; // Bold PURPLE
+    public static final String WHITE_BOLD = "\033[1;37m";  // Bold WHITE
+
     Random random = new Random();
     Scanner scanner = new Scanner(System.in);
     String input3 = "";
@@ -95,18 +102,27 @@ public class Player {
             System.out.println("0. EXIT");
 
             input = scanner.next();
+            System.out.println("\n".repeat(25));
             if (input.equals("0")) {
                 System.out.println("\n".repeat(25));
                 return;
             }
 
-            System.out.println("What type of food?");
+            System.out.println("----- [Food Info] -----");
+            System.out.println(BLUE_BOLD + "Dog/Cat" + ANSI_RESET +" eats:" + BLUE_BOLD +" Apples." + ANSI_RESET);
+            System.out.println(PURPLE_BOLD + "Rabbit" + ANSI_RESET +" eats:" + PURPLE_BOLD +" Carrots." + ANSI_RESET);
+            System.out.println(GREEN_BOLD + "Sheep/Cow" + ANSI_RESET +" eats:" + GREEN_BOLD + " Grass." + ANSI_RESET);
+            System.out.println("-".repeat(23));
+            System.out.println("You've picked: " + p.animals.get(Integer.parseInt(input)-1).getClass().getSimpleName());
+            System.out.println("\nWhat type of food?");
+
+
             int optionCounter2 = 1;
             for (int i = 0; i < p.food.size(); i++) {
                 if (p.food.get(i).kilos < 1) {
                     p.food.remove(i);
                 }
-                System.out.println(optionCounter2 + "." + p.food.get(i).name + " " + p.food.get(i).kilos + "kg");
+                System.out.println(optionCounter2 + "." + p.food.get(i).name + " " + p.food.get(i).kilos +  "kg");
                 optionCounter2++;
             }
 
@@ -389,6 +405,7 @@ public class Player {
             }
         }
     }
+
 }
 
 
