@@ -78,36 +78,6 @@ public class Player {
     }
 
 
-    public void checkRabbitFood(Player p) {
-        while (true) {
-
-            System.out.println("What type of food???");
-
-            int optionCounter2 = 1;
-            for (int i = 0; i < p.food.size(); i++) {
-                if (p.food.get(i).name.equals("Apple")) {
-                    continue;
-                } else if (p.food.get(i).name.equals("Grass")) {
-                    continue;
-                }
-                System.out.println(optionCounter2 + "." + p.food.get(i).name + " " + p.food.get(i).kilos + "kg");
-                optionCounter2++;
-            }
-            input3 = scanner.next();
-            System.out.println("How many Kg?");
-            input2 = scanner.next();
-            System.out.println("\n".repeat(30));
-
-
-            feedTheAnimal(animals.get(Integer.parseInt(input) - 1));
-            p.food.get(Integer.parseInt(input3) - 1).kilos -= Integer.parseInt(input2);
-            System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET +
-                    animals.get(Integer.parseInt(input) - 1).name + " has gained " + "+ " + (Integer.parseInt(input2) * 10) + "HP");
-            break;
-        }
-    }
-
-
     public void feedAnimal(Player p) {
 
         while (true) {
@@ -220,13 +190,19 @@ public class Player {
             if(input2.equals("0")){
                 break;
             }
+
             typeOfAnimal = animals.get(Integer.parseInt(input2) - 1);
             if(typeOfAnimal.gender.equals("male")){
                 System.out.println("Pick in correct order: male > female..");
                 mateAnimals(p);
             }
-
             System.out.println("\n".repeat(35));
+
+
+                    if(!p.animals.get(Integer.parseInt(input2)-1).getClass().getSimpleName().equals(p.animals.get(Integer.parseInt(input)-1).getClass().getSimpleName())){
+                        System.out.println("Has to be same animal");
+                        mateAnimals(p);
+                    }
 
 
             if (!p.animals.get(Integer.parseInt(input) - 1).gender.equals(p.animals.get(Integer.parseInt(input2) - 1).gender)) {
@@ -261,9 +237,9 @@ public class Player {
                     }
                     if (babyCount == 2) {
                         System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET + "Sorry, didn't mate any animals this time..");
-                        break;
+
                     }
-                    return;
+                    break;
                 }
 
                 if (typeOfAnimal.getClass().getSimpleName().equals("Dog")) {
@@ -294,12 +270,13 @@ public class Player {
                             }
                             babyCount--;
                         }
+
                     }
                     if (babyCount == 3) {
                         System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET + "Sorry, didn't mate any animals this time..");
-                        break;
+
                     }
-                    return;
+                    break;
                 }
 
 
@@ -334,9 +311,8 @@ public class Player {
                     }
                     if (babyCount == 3) {
                         System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET + "Sorry, didn't mate any animals this time..");
-                        break;
                     }
-                    return;
+                    break;
                 }
 
 
@@ -371,9 +347,8 @@ public class Player {
                     }
                     if (babyCount == 2) {
                         System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET + "Sorry, didn't mate any animals this time..");
-                        break;
                     }
-                    return;
+                    break;
                 }
 
                 if (typeOfAnimal.getClass().getSimpleName().equals("Rabbit")) {
@@ -405,9 +380,8 @@ public class Player {
                     }
                     if (babyCount == 5) {
                         System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET + "Sorry, didn't mate any animals this time..");
-                        break;
                     }
-                    return;
+                    break;
                 }
             }
         }
