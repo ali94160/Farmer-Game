@@ -263,6 +263,7 @@ public class Player {
                         System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET + "Sorry, didn't mate any animals this time..");
                         break;
                     }
+                    return;
                 }
 
                 if (typeOfAnimal.getClass().getSimpleName().equals("Dog")) {
@@ -298,6 +299,7 @@ public class Player {
                         System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET + "Sorry, didn't mate any animals this time..");
                         break;
                     }
+                    return;
                 }
 
 
@@ -334,6 +336,7 @@ public class Player {
                         System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET + "Sorry, didn't mate any animals this time..");
                         break;
                     }
+                    return;
                 }
 
 
@@ -370,6 +373,7 @@ public class Player {
                         System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET + "Sorry, didn't mate any animals this time..");
                         break;
                     }
+                    return;
                 }
 
                 if (typeOfAnimal.getClass().getSimpleName().equals("Rabbit")) {
@@ -403,6 +407,7 @@ public class Player {
                         System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET + "Sorry, didn't mate any animals this time..");
                         break;
                     }
+                    return;
                 }
             }
         }
