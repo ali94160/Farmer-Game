@@ -122,7 +122,6 @@ public class Game {
 
                         case 4:
                             if(players.get(j).animals.size() <= 0){
-                                System.out.println("\n".repeat(20));
                                 System.out.println(CYAN_BRIGHT + "[Game]:" + RESET + " You don't have any animals");
                                 break;
                             } else if (players.get(j).animals.size() >= 1){
@@ -133,19 +132,14 @@ public class Game {
 
 
                         case 5:
-                            for(int k = 0; k < players.get(j).animals.size(); k++) {
-
-                                if (players.get(j).animals.size() >= 2) {
-                                    System.out.println("Need atleast 2 animals");
-
-                                for (int h = 0; h < players.get(j).animals.size(); h++) {
-                                    if(players.get(j).animals.get(h).gender.equals())
+                                if (players.get(j).animals.size() < 2) {
+                                    System.out.println("\n".repeat(20));
+                                    System.out.println(CYAN_BRIGHT + "[Game]: " + RESET + "Need at least 2 animals..");
+                                    break;
                                 }
-                            }
-                            }
-
                             checkAnimals(players.get(j));
                             endTurn = true;
+                            break;
                     }
                 }
             }
@@ -198,7 +192,7 @@ public class Game {
         }
     }
 
-    public boolean checkAnimals(Player p) {
+    public void checkAnimals(Player p) {
         int male = 0;
         int female = 0;
         int co = 0;
@@ -220,7 +214,6 @@ public class Game {
         if(male > 0 && female > 0 && co > 0){
             p.mateAnimals(p);
         }
-        return true;
     }
 
 
