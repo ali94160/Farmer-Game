@@ -199,10 +199,13 @@ public class Player {
             System.out.println("\n".repeat(35));
 
 
-                    if(!p.animals.get(Integer.parseInt(input2)-1).getClass().getSimpleName().equals(p.animals.get(Integer.parseInt(input)-1).getClass().getSimpleName())){
-                        System.out.println("Has to be same animal");
-                        mateAnimals(p);
-                    }
+            if(!p.animals.get(Integer.parseInt(input2)-1).getClass().getSimpleName().equals
+                    (p.animals.get(Integer.parseInt(input)-1).getClass().getSimpleName())){
+                System.out.println("Has to be same animal");
+                mateAnimals(p);
+                return;
+
+            }
 
 
             if (!p.animals.get(Integer.parseInt(input) - 1).gender.equals(p.animals.get(Integer.parseInt(input2) - 1).gender)) {

@@ -137,6 +137,7 @@ public class Game {
                                     System.out.println(CYAN_BRIGHT + "[Game]: " + RESET + "Need at least 2 animals..");
                                     break;
                                 }
+                            System.out.println("\n".repeat(20));
                             checkAnimals(players.get(j));
                             endTurn = true;
                             break;
