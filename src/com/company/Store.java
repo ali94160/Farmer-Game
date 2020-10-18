@@ -143,7 +143,7 @@ public class Store {
     }
 
     public static void food(Player p){
-        do {
+        while (true){
             System.out.println("\n");
             System.out.println("---------------[FOOD STORE]--------------");
             System.out.println("Balance: " + "$" + p.money);
@@ -160,36 +160,87 @@ public class Store {
             if (input.equals("1")) {
                 System.out.println("You've picked Apples...");
                 System.out.println("How many KG? (minimum 1 kg)");
-                input2 = scanner.next();
-                p.money -= Integer.parseInt(input2) * 50;
-                checkFood("Apple",p);
-                System.out.println("\n".repeat(25));
-                System.out.println("You bought " + input2 + "kg apples...");
-                p.food.add(new Apples("Apple", (Integer.parseInt(input2)), 50));
+                while(true) {
+                    try {
+                        input2 = scanner.next();
+                        if(Integer.parseInt(input2) >= 0) {
+                            break;
+                        }
+                    } catch (Exception e) {
+                        System.out.println("Invalid input");
+                    }
+                }
+                if (Integer.parseInt(input2) <= 0) {
+                    System.out.println("Invalid input");
+                    food(p);
+                } else if (Integer.parseInt(input2) > 0) {
+                    p.money -= Integer.parseInt(input2) * 50;
+                    checkFood("Apple", p);
+                    System.out.println("\n".repeat(25));
+                    System.out.println("You bought " + input2 + "kg apples...");
+                    p.food.add(new Apples("Apple", (Integer.parseInt(input2)), 50));
+                }
             }
 
-            if (input.equals("2")){
+            if (input.equals("2")) {
                 System.out.println("You've picked Carrots...");
                 System.out.println("How many KG? (minimum 1 kg)");
-                input2 = scanner.next();
-                p.money = p.money - Integer.parseInt(input2) * 50;
-                checkFood("Carrot",p);
-                System.out.println("\n".repeat(25));
-                System.out.println("You bought " + input2 + "kg carrots...");
-                p.food.add(new Carrots("Carrot",(Integer.parseInt(input2)),50));
+                while(true) {
+                    try {
+                        input2 = scanner.next();
+                        if(Integer.parseInt(input2) >= 0) {
+                            break;
+                        }
+                    } catch (Exception e) {
+                        System.out.println("Invalid input");
+                    }
+                }
+                if (Integer.parseInt(input2) <= 0) {
+                    System.out.println("Invalid input");
+                    food(p);
+                } else if (Integer.parseInt(input2) > 0) {
+                    p.money -= Integer.parseInt(input2) * 50;
+                    checkFood("Carrot", p);
+                    System.out.println("\n".repeat(25));
+                    System.out.println("You bought " + input2 + "kg carrots...");
+                    p.food.add(new Apples("Carrot", (Integer.parseInt(input2)), 50));
+                }
             }
 
-            if(input.equals("3")){
+            if (input.equals("3")) {
                 System.out.println("You've picked Grass...");
                 System.out.println("How many KG? (minimum 1 kg)");
-                input2 = scanner.next();
-                p.money = p.money - Integer.parseInt(input2) * 40;
-                checkFood("Grass", p);
-                System.out.println("\n".repeat(25));
-                System.out.println("You bought " + input2 + "kg grass...");
-                p.food.add(new Grass("Grass",(Integer.parseInt(input2)),40));
+                while(true) {
+                    try {
+                        input2 = scanner.next();
+                        if(Integer.parseInt(input2) >= 0) {
+                            break;
+                        }
+                    } catch (Exception e) {
+                        System.out.println("Invalid input");
+                    }
+                }
+                if (Integer.parseInt(input2) <= 0) {
+                    System.out.println("Invalid input");
+                    food(p);
+                }
+                else if(Integer.parseInt(input2) > p.money) {
+                    System.out.println("Not enough money");
+                    return;
+                }
+                    else if (Integer.parseInt(input2) > 0) {
+                    p.money -= Integer.parseInt(input2) * 50;
+                    checkFood("Grass", p);
+                    System.out.println("\n".repeat(25));
+                    System.out.println("You bought " + input2 + "kg grass...");
+                    p.food.add(new Apples("Grass", (Integer.parseInt(input2)), 50));
+                }
             }
-        } while (!input.equals("0"));
+
+            if(input.equals("0")){
+                break;
+            }
+        }
 
     }
 

@@ -122,6 +122,7 @@ public class Game {
 
                         case 4:
                             if(players.get(j).animals.size() <= 0){
+                                System.out.println("\n".repeat(25));
                                 System.out.println(CYAN_BRIGHT + "[Game]:" + RESET + " You don't have any animals");
                                 break;
                             } else if (players.get(j).animals.size() >= 1){
