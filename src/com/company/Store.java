@@ -53,10 +53,12 @@ public class Store {
                         System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET + ANSI_GREEN+
                                 "You've purchased a Rabbit" + " " + "(" + input2 + ")" + " for $1000 \n"+ ANSI_RESET);
                     }
-                    System.out.println("\n".repeat(20));
-                    System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET +"Invalid input");
+                    else if(Integer.parseInt(input2) < 1 || Integer.parseInt(input2) > 2){
+                        System.out.println("\n".repeat(25));
+                        System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET +"Invalid input");
+                    }
                 } catch (Exception e){
-                    System.out.println("\n".repeat(20));
+                    System.out.println("\n".repeat(25));
                     System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET +"Invalid input");
                     buyAnimal(p);
                 }
@@ -84,11 +86,12 @@ public class Store {
                         System.out.println("\n".repeat(25));
                         System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET + ANSI_GREEN+
                                 "You've purchased a Dog" + " " + "(" + input2 + ")" + " for $2000 \n"+ ANSI_RESET);
+                    } else if(Integer.parseInt(input2) < 1 || Integer.parseInt(input2) > 2){
+                        System.out.println("\n".repeat(25));
+                        System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET +"Invalid input");
                     }
-                    System.out.println("\n".repeat(20));
-                    System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET +"Invalid input");
                 } catch (Exception e){
-                    System.out.println("\n".repeat(20));
+                    System.out.println("\n".repeat(25));
                     System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET +"Invalid input");
                     buyAnimal(p);
                 }
@@ -117,11 +120,12 @@ public class Store {
                         System.out.println("\n".repeat(25));
                         System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET + ANSI_GREEN+
                                 "You've purchased a Cat" + " " + "(" + input2 + ")" + " for $2000 \n"+ ANSI_RESET);
+                    }else if(Integer.parseInt(input2) < 1 || Integer.parseInt(input2) > 2){
+                        System.out.println("\n".repeat(25));
+                        System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET +"Invalid input");
                     }
-                    System.out.println("\n".repeat(20));
-                    System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET +"Invalid input");
                 } catch (Exception e){
-                    System.out.println("\n".repeat(20));
+                    System.out.println("\n".repeat(25));
                     System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET +"Invalid input");
                     buyAnimal(p);
                 }
@@ -150,11 +154,12 @@ public class Store {
                         System.out.println("\n".repeat(25));
                         System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET + ANSI_GREEN+
                                 "You've purchased a Sheep" + " " + "(" + input2 + ")" + " for $2500 \n"+ ANSI_RESET);
+                    }else if(Integer.parseInt(input2) < 1 || Integer.parseInt(input2) > 2){
+                        System.out.println("\n".repeat(25));
+                        System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET +"Invalid input");
                     }
-                    System.out.println("\n".repeat(20));
-                    System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET +"Invalid input");
                 } catch (Exception e){
-                    System.out.println("\n".repeat(20));
+                    System.out.println("\n".repeat(25));
                     System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET +"Invalid input");
                     buyAnimal(p);
                 }
@@ -183,11 +188,12 @@ public class Store {
                         System.out.println("\n".repeat(25));
                         System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET + ANSI_GREEN+
                                 "You've purchased a Cow" + " " + "(" + input2 + ")" + " for $3000 \n"+ ANSI_RESET);
+                    }else if(Integer.parseInt(input2) < 1 || Integer.parseInt(input2) > 2){
+                        System.out.println("\n".repeat(25));
+                        System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET +"Invalid input");
                     }
-                    System.out.println("\n".repeat(20));
-                    System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET +"Invalid input");
                 } catch (Exception e){
-                    System.out.println("\n".repeat(20));
+                    System.out.println("\n".repeat(25));
                     System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET +"Invalid input");
                     buyAnimal(p);
                 }
