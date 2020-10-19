@@ -67,10 +67,7 @@ public class Game {
     public void mainMenu() {
         for (int i = 0; i < roundInput; i++) {
             for (int j = 0; j < players.size(); j++) {
-
-                healthLoss();
-                checkDeath();
-
+                players.get(j).deadAnimal();
                 boolean endTurn = false;
                 while (!endTurn) {
 
@@ -94,12 +91,16 @@ public class Game {
                         } catch (Exception e) {
                             System.out.println("Invalid input");
                             scanner.next();
-
                         }
                     }
 
                     switch (playerInput) {
                         case 1:
+                            if(players.get(j).money < 1000){
+                                System.out.println("\n".repeat(25));
+                                System.out.println(CYAN_BRIGHT + "[Game]:" + RESET + "You don't have enough money");
+                                break;
+                            }
                             System.out.println("\n".repeat(28));
                             players.get(j).showAnimalsInStore();
                             endTurn = true;
@@ -147,8 +148,7 @@ public class Game {
                     }
                 }
             }
-
-
+            healthLoss();
         }
         andTheWinnerIs();
     }
@@ -190,11 +190,6 @@ public class Game {
     }
 
 
-    public void checkDeath() {
-        for (Player p : players) {
-            p.deadAnimal();
-        }
-    }
 
     public void checkAnimals(Player p) {
         int male = 0;

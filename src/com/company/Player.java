@@ -42,14 +42,17 @@ public class Player {
     public void sellAnimals(Player p) {
         while (true) {
             System.out.println("What Animals would you like to sell:");
+            System.out.println("-".repeat(55));
             int optionCounter = 1;
-            System.out.println("0. EXIT");
             for (Animal a : p.animals) {
-                System.out.println(optionCounter + "." + "(" + a.getClass().getSimpleName() + ")" + " " + a.name + "  "
-                        + "(" + a.gender + ")" + "  " + a.healthPoints + "HP" + " -> Sell for: $" + (a.price * a.healthPoints) / 100);
+                System.out.println(optionCounter + "." + "(" + a.getClass().getSimpleName() + ")" + " | " + a.name + "  "
+                        + "(" + a.gender + ")" + " | " + a.healthPoints + "HP" + " | Sell for: $" + (a.price * a.healthPoints) / 100);
                 optionCounter++;
             }
+            System.out.println("-".repeat(55));
+            System.out.println("0. EXIT");
             input = scanner.next();
+            System.out.println("\n".repeat(30));
 
             if (input.equals("0")) {
                 System.out.println("\n".repeat(30));
@@ -62,7 +65,7 @@ public class Player {
 
 
     public void buyFood() {
-        if (money < 200) {
+        if (money < 40) {
             System.out.println("\n".replace("\n", ""));
             System.out.println("You don't have enough money.");
             return;
@@ -73,13 +76,15 @@ public class Player {
     public void animalSold(Animal a) {
         int profit = (a.healthPoints * a.price) / 100;
         money += profit;
+        System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET +"You gained $" + ANSI_GREEN + profit + ANSI_RESET + " to your balance." + "\n");
     }
 
     public void deadAnimal() {
         for (int i = 0; i < animals.size(); i++) {
             if (animals.get(i).healthPoints <= 0) {
                 System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET + animals.get(i).name + ANSI_RED + " has died..." + ANSI_RESET);
-                animals.remove(i);
+                animals.remove(animals.get(i));
+                deadAnimal();
             }
         }
     }
@@ -181,11 +186,12 @@ public class Player {
             System.out.println("0. EXIT");
             try {
                 input = scanner.next();
-                if(Integer.parseInt(input) >= animals.size() || Integer.parseInt(input) < 0){
-                    System.out.println("Invalid input");
+                if(Integer.parseInt(input) > animals.size() || Integer.parseInt(input) < 0){
+                    System.out.println("Invalid input1");
                     mateAnimals(p);
                 }
             } catch (Exception e){
+                System.out.println("\n".repeat(25));
                 System.out.println("Invalid input");
                 mateAnimals(p);
             }
@@ -266,9 +272,8 @@ public class Player {
                     }
                     if (babyCount == 2) {
                         System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET + "Sorry, didn't mate any animals this time..");
-
+                        return;
                     }
-                    return;
                 }
 
                 if (typeOfAnimal.getClass().getSimpleName().equals("Dog")) {
@@ -278,7 +283,7 @@ public class Player {
                         int num = 1 + random.nextInt(2);
                         if (num == 1) {
                             break;
-                        } else {
+                        } else if (num == 2) {
 
                             int boyOrGirl = 1 + random.nextInt(2);
                             if (boyOrGirl == 1) {
@@ -288,21 +293,20 @@ public class Player {
                                 p.animals.add(new Dog(inputName, "male", "Apple"));
                                 System.out.println("\n".repeat(25));
 
+
                             } else {
                                 System.out.println(ANSI_GREEN + "Congratulation!" + ANSI_RESET + " Its a GIRL!");
-                                System.out.println("Name your Dog");
+                                System.out.println("Name your Dog: ");
                                 inputName = scanner.next();
                                 p.animals.add(new Dog(inputName, "female", "Apple"));
-
                                 System.out.println("\n".repeat(25));
                             }
                             babyCount--;
                         }
-
                     }
                     if (babyCount == 3) {
                         System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET + "Sorry, didn't mate any animals this time..");
-
+                        return;
                     }
                     return;
                 }
@@ -328,7 +332,7 @@ public class Player {
 
                             } else {
                                 System.out.println(ANSI_GREEN + "Congratulation!" + ANSI_RESET + " Its a GIRL!");
-                                System.out.println("Name your Cat");
+                                System.out.println("Name your Cat: ");
                                 inputName = scanner.next();
                                 p.animals.add(new Dog(inputName, "female", "Apple"));
 
@@ -364,7 +368,7 @@ public class Player {
 
                             } else {
                                 System.out.println(ANSI_GREEN + "Congratulation!" + ANSI_RESET + " Its a GIRL!");
-                                System.out.println("Name your Cow");
+                                System.out.println("Name your Cow: ");
                                 inputName = scanner.next();
                                 p.animals.add(new Dog(inputName, "female", "Grass"));
 
@@ -398,7 +402,7 @@ public class Player {
 
                             } else {
                                 System.out.println(ANSI_GREEN + "Congratulation!" + ANSI_RESET + " Its a GIRL!");
-                                System.out.println("Name your Rabbit");
+                                System.out.println("Name your Rabbit: ");
                                 inputName = scanner.next();
                                 p.animals.add(new Dog(inputName, "female", "Carrot"));
                                 System.out.println("\n".repeat(25));
