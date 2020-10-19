@@ -68,6 +68,8 @@ public class Game {
         for (int i = 0; i < roundInput; i++) {
             for (int j = 0; j < players.size(); j++) {
 
+                healthLoss();
+                checkDeath();
 
                 boolean endTurn = false;
                 while (!endTurn) {
@@ -145,8 +147,8 @@ public class Game {
                     }
                 }
             }
-            healthLoss();
-            checkDeath();
+
+
         }
         andTheWinnerIs();
     }
@@ -182,7 +184,7 @@ public class Game {
     public void healthLoss() {
         for (int i = 0; i < players.size(); i++) {
             for (int j = 0; j < players.get(i).animals.size(); j++) {
-                players.get(i).animals.get(j).healthPoints -= 10 + random.nextInt(30);
+                players.get(i).animals.get(j).healthPoints -= 10 + random.nextInt(21);
             }
         }
     }
