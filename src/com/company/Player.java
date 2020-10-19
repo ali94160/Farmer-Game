@@ -179,7 +179,17 @@ public class Player {
             }
             System.out.println("-".repeat(45));
             System.out.println("0. EXIT");
-            input = scanner.next();
+            try {
+                input = scanner.next();
+                if(Integer.parseInt(input) >= animals.size() || Integer.parseInt(input) < 0){
+                    System.out.println("Invalid input");
+                    mateAnimals(p);
+                }
+            } catch (Exception e){
+                System.out.println("Invalid input");
+                mateAnimals(p);
+            }
+
             System.out.println("\n".repeat(2));
             if(input.equals("0")){
                 break;
@@ -258,7 +268,7 @@ public class Player {
                         System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET + "Sorry, didn't mate any animals this time..");
 
                     }
-                    break;
+                    return;
                 }
 
                 if (typeOfAnimal.getClass().getSimpleName().equals("Dog")) {
@@ -276,7 +286,6 @@ public class Player {
                                 System.out.println("Name your Dog: ");
                                 inputName = scanner.next();
                                 p.animals.add(new Dog(inputName, "male", "Apple"));
-
                                 System.out.println("\n".repeat(25));
 
                             } else {
@@ -295,7 +304,7 @@ public class Player {
                         System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET + "Sorry, didn't mate any animals this time..");
 
                     }
-                    break;
+                    return;
                 }
 
 
@@ -331,7 +340,7 @@ public class Player {
                     if (babyCount == 3) {
                         System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET + "Sorry, didn't mate any animals this time..");
                     }
-                    break;
+                    return;
                 }
 
 
@@ -367,7 +376,7 @@ public class Player {
                     if (babyCount == 2) {
                         System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET + "Sorry, didn't mate any animals this time..");
                     }
-                    break;
+                    return;
                 }
 
                 if (typeOfAnimal.getClass().getSimpleName().equals("Rabbit")) {
@@ -400,7 +409,7 @@ public class Player {
                     if (babyCount == 5) {
                         System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET + "Sorry, didn't mate any animals this time..");
                     }
-                    break;
+                    return;
                 }
             }
         }
