@@ -128,6 +128,10 @@ public class Game {
                                 System.out.println("\n".repeat(25));
                                 System.out.println(CYAN_BRIGHT + "[Game]:" + RESET + " You don't have any animals");
                                 break;
+                            } else if(players.get(j).food.size() == 0){
+                                System.out.println("\n".repeat(25));
+                                System.out.println("You're out of food supplies");
+                                break;
                             } else if (players.get(j).animals.size() >= 1){
                                 System.out.println("\n".repeat(28));
                                 players.get(j).feedAnimal(players.get(j));
@@ -170,14 +174,12 @@ public class Game {
         System.out.println("Your Food:");
         for (int i = 0; i < p.food.size(); i++) {
 
-            if (p.food.get((i)).kilos == 0) {
-                p.food.remove(p.food.get(i));
-                return;
-            }
-            System.out.println(p.food.get(i).name + " " + p.food.get(i).kilos + "kg");
-
+                if (p.food.get((i)).kilos == 0) {
+                    p.food.remove(p.food.get(i));
+                    return;
+                }
+                System.out.println(p.food.get(i).name + " " + p.food.get(i).kilos + "kg");
         }
-
     }
 
 

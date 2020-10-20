@@ -91,8 +91,13 @@ public class Player {
 
 
     public void feedAnimal(Player p) {
-
+        if(p.food.size() <= 0){
+            System.out.println("\n".repeat(25));
+            System.out.println("You're out of food supplies");
+            return;
+        }
         while (true) {
+
             System.out.println("\n".repeat(2));
             System.out.println("[" + p.name + "]" + " Which Animal would you like to feed?");
             System.out.println("-".repeat(45));
@@ -107,6 +112,7 @@ public class Player {
             System.out.println("0. EXIT");
 
             input = scanner.next();
+
             System.out.println("\n".repeat(25));
             if (input.equals("0")) {
                 System.out.println("\n".repeat(25));
@@ -143,22 +149,33 @@ public class Player {
                 input2 = scanner.next();
                 System.out.println("\n".repeat(30));
 
-                feedTheAnimal(animals.get(Integer.parseInt(input) - 1));
-                p.food.get(Integer.parseInt(input3) - 1).kilos -= Integer.parseInt(input2);
-                for (int i = 0; i < p.animals.size(); i++) {
-                    if (p.animals.get(i).healthPoints < 1) {
-                        animals.remove(i);
+                for(int j = 0; j < p.food.size(); j++) {
+                    if (Integer.parseInt(input2) > p.food.get(j).kilos){
+                        System.out.println("You don't have enough kg.");
+                        break;
                     }
+                    feedTheAnimal(animals.get(Integer.parseInt(input) - 1));
+                    p.food.get(Integer.parseInt(input3) - 1).kilos -= Integer.parseInt(input2);
+                    for (int i = 0; i < p.animals.size(); i++) {
+                        if (p.animals.get(i).healthPoints < 1) {
+                            animals.remove(i);
+                            break;
+                        }
+                    }
+                    System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET +
+                            animals.get(Integer.parseInt(input) - 1).name + " has gained " + "+ " + (Integer.parseInt(input2) * 10) + "HP");
+
+
+                } if (!p.food.get(Integer.parseInt(input3) - 1).name.equals(p.animals.get(Integer.parseInt(input) - 1).eats)) {
+                    System.out.println("\n".repeat(25));
+                    System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET +
+                            animals.get(Integer.parseInt(input) - 1).getClass().getSimpleName() + "'s don't eat that kind of food..");
                 }
-                System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET +
-                        animals.get(Integer.parseInt(input) - 1).name + " has gained " + "+ " + (Integer.parseInt(input2) * 10) + "HP");
+                }
 
-            } else if (!p.food.get(Integer.parseInt(input3) - 1).name.equals(p.animals.get(Integer.parseInt(input) - 1).eats)) {
-                System.out.println("\n".repeat(25));
-                System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET +
-                        animals.get(Integer.parseInt(input) - 1).getClass().getSimpleName() + "'s don't eat that kind of food..");
-            }
 
+
+            break;
 
         }
     }

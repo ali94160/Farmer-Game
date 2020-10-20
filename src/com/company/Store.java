@@ -7,11 +7,13 @@ public class Store {
     public static final String ANSI_YELLOW = "\u001B[33m";
     public static final String GREEN_BRIGHT = "\033[0;92m";
     public static final String CYAN_BRIGHT = "\033[0;96m";
+    public static final String WHITE_BOLD = "\033[1;37m";  // Bold WHITE
+
 
     static Scanner scanner = new Scanner(System.in);
     static String input = "";
     static String input2 = "";
-    private static Object Carrots;
+
 
     public static void buyAnimal(Player p){
 
@@ -207,7 +209,7 @@ public class Store {
     public static void food(Player p){
         while (true){
             System.out.println("\n");
-            System.out.println("---------------[FOOD STORE]--------------");
+            System.out.println("---------------" + WHITE_BOLD +"[FOOD STORE]" + ANSI_RESET + "--------------");
             System.out.println("Balance: " + "$" + p.money);
             System.out.println("[" + p.name + "]" + " What Animal would you like to buy?");
             System.out.println("-".repeat(41));
@@ -237,10 +239,11 @@ public class Store {
                     food(p);
                 } else if (Integer.parseInt(input2) > 0) {
                     p.money -= Integer.parseInt(input2) * 50;
-                    checkFood("Apple", p);
                     System.out.println("\n".repeat(25));
                     System.out.println("You bought " + input2 + "kg apples...");
-                    p.food.add(new Apples("Apple", (Integer.parseInt(input2)), 50));
+                    if(!checkFood("Apple",p)) {
+                        p.food.add(new Apples("Apple", (Integer.parseInt(input2)), 50));
+                    }
                 }
             }
 
@@ -262,10 +265,11 @@ public class Store {
                     food(p);
                 } else if (Integer.parseInt(input2) > 0) {
                     p.money -= Integer.parseInt(input2) * 50;
-                    checkFood("Carrot", p);
                     System.out.println("\n".repeat(25));
                     System.out.println("You bought " + input2 + "kg carrots...");
-                    p.food.add(new Apples("Carrot", (Integer.parseInt(input2)), 50));
+                    if(!checkFood("Carrot",p)) {
+                        p.food.add(new Apples("Carrot", (Integer.parseInt(input2)), 50));
+                    }
                 }
             }
 
@@ -292,10 +296,11 @@ public class Store {
                 }
                     else if (Integer.parseInt(input2) > 0) {
                     p.money -= Integer.parseInt(input2) * 50;
-                    checkFood("Grass", p);
                     System.out.println("\n".repeat(25));
                     System.out.println("You bought " + input2 + "kg grass...");
-                    p.food.add(new Apples("Grass", (Integer.parseInt(input2)), 50));
+                    if (!checkFood("Grass", p)) {
+                        p.food.add(new Apples("Grass", (Integer.parseInt(input2)), 40));
+                    }
                 }
             }
 
@@ -307,24 +312,15 @@ public class Store {
     }
 
 
-    public static void checkFood(String type, Player p) {
+    public static boolean checkFood(String type, Player p) {
         int check = 0;
         int add = 0;
         for (int i = 0; i < p.food.size(); i++) {
             if (p.food.get(i).name.equals(type)) {
-                check++;
-            }
-            if (check == 2) {
-                add = p.food.get(i).kilos;
-                p.food.remove(i);
+                p.food.get(i).kilos += Integer.parseInt(input2);
+                return true;
             }
         }
-        if(check == 2) {
-            for (int i = 0; i < p.food.size(); i++) {
-                if (p.food.get(i).name.equals(type)) {
-                    p.food.get(i).kilos += add;
-                }
-            }
-        }
+        return false;
     }
 }
