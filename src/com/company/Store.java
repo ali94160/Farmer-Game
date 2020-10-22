@@ -313,8 +313,6 @@ public class Store {
 
 
     public static boolean checkFood(String type, Player p) {
-        int check = 0;
-        int add = 0;
         for (int i = 0; i < p.food.size(); i++) {
             if (p.food.get(i).name.equals(type)) {
                 p.food.get(i).kilos += Integer.parseInt(input2);
