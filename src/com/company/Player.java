@@ -41,7 +41,7 @@ public class Player {
 
     public void sellAnimals(Player p) {
         while (true) {
-            System.out.println("What Animals would you like to sell:");
+            System.out.println("[" + BLUE_BOLD + p.name + ANSI_RESET + "]" + " What Animals would you like to sell:");
             System.out.println("Balance: $" + money);
             System.out.println("-".repeat(55));
             int optionCounter = 1;
@@ -54,6 +54,7 @@ public class Player {
             System.out.println("0. EXIT");
             while(true) {
                 if(p.animals.size() <= 0){
+                    System.out.println("\n".repeat(20));
                     System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET +"No animals left to sell.");
                     return;
                 }
@@ -111,7 +112,7 @@ public class Player {
         while (true) {
 
             System.out.println("\n".repeat(2));
-            System.out.println("[" + p.name + "]" + " Which Animal would you like to feed?");
+            System.out.println("[" + BLUE_BOLD + p.name + ANSI_RESET + "]" + " Which Animal would you like to feed?");
             System.out.println("-".repeat(45));
             int optionCounter = 1;
             for (Animal a : p.animals) {
@@ -199,9 +200,10 @@ public class Player {
                             animals.remove(i);
                             break;
                         }
-                        System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET +
-                                animals.get(Integer.parseInt(input) - 1).name + " has gained " + "+ " + (Integer.parseInt(input2) * 10) + "HP");
                     }
+                    System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET +
+                        animals.get(Integer.parseInt(input) - 1).name + " has gained " + "+ " + (Integer.parseInt(input2) * 10) + "HP");
+
                 } if (!p.food.get(Integer.parseInt(input3) - 1).name.equals(p.animals.get(Integer.parseInt(input) - 1).eats)) {
                     System.out.println("\n".repeat(25));
                     System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET +
