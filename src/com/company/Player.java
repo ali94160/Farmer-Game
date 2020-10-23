@@ -42,6 +42,7 @@ public class Player {
     public void sellAnimals(Player p) {
         while (true) {
             System.out.println("What Animals would you like to sell:");
+            System.out.println("Balance: $" + money);
             System.out.println("-".repeat(55));
             int optionCounter = 1;
             for (Animal a : p.animals) {
@@ -52,12 +53,15 @@ public class Player {
             System.out.println("-".repeat(55));
             System.out.println("0. EXIT");
             while(true) {
+                if(p.animals.size() <= 0){
+                    System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET +"No animals left to sell.");
+                    return;
+                }
                 try {
                     input3 = scanner.next();
                     if(Integer.parseInt(input3)-1 > optionCounter-1 ){
-                        System.out.println("Invalid input1");
-                    }
-                    else{
+                        System.out.println("Invalid input");
+                    } else{
                         break;
                     }
                 } catch (Exception err){
@@ -66,12 +70,12 @@ public class Player {
             }
             System.out.println("\n".repeat(30));
 
-            if (input.equals("0")) {
+            if (input3.equals("0")) {
                 System.out.println("\n".repeat(30));
                 return;
             }
-            animalSold(animals.get(Integer.parseInt(input) - 1));
-            animals.remove(Integer.parseInt(input) - 1);
+            animalSold(animals.get(Integer.parseInt(input3) - 1));
+            animals.remove(Integer.parseInt(input3) - 1);
         }
     }
 
@@ -152,7 +156,7 @@ public class Player {
                     if(Integer.parseInt(input3)-1 > p.food.size()-1 || Integer.parseInt(input3)-1 < 0){
                         System.out.println("Invalid input");
                     } else if(Integer.parseInt(input3)-1 == 2){
-                        System.out.println("Invalid input2");
+                        System.out.println("Invalid input");
                     }
                     else {
                         break;
@@ -234,7 +238,7 @@ public class Player {
             try {
                 input = scanner.next();
                 if(Integer.parseInt(input) > animals.size() || Integer.parseInt(input) < 0){
-                    System.out.println("Invalid input1");
+                    System.out.println("Invalid input");
                     mateAnimals(p);
                 }
             } catch (Exception e){
