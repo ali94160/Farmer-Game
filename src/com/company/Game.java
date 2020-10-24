@@ -12,7 +12,7 @@ public class Game {
 
     Scanner scanner = new Scanner(System.in);
     Random random = new Random();
-    int roundInput;
+    static int roundInput;
     int playerInput;
     public static int healthPoints;
     String playerName;
@@ -67,6 +67,7 @@ public class Game {
     public void mainMenu() {
         for (int i = 0; i < roundInput; i++) {
             for (int j = 0; j < players.size(); j++) {
+                checkBalance(players.get(j));
                 players.get(j).deadAnimal();
                 boolean endTurn = false;
                 while (!endTurn) {
@@ -82,10 +83,10 @@ public class Game {
                     System.out.println("5. Mate Animals");
                     System.out.println("_".repeat(30));
 
-                    while(true) {
+                    while (true) {
                         try {
                             playerInput = scanner.nextInt();
-                            if(playerInput >= 1 && playerInput <= 5){
+                            if (playerInput >= 1 && playerInput <= 5) {
                                 break;
                             }
                         } catch (Exception e) {
@@ -96,71 +97,103 @@ public class Game {
 
                     switch (playerInput) {
                         case 1:
-                            if(players.get(j).money < 1000){
+                            if (players.get(j).money < 1000) {
                                 System.out.println("\n".repeat(25));
                                 System.out.println(CYAN_BRIGHT + "[Game]:" + RESET + "You don't have enough money");
+                                endTurn = false;
                                 break;
                             }
                             System.out.println("\n".repeat(28));
                             players.get(j).showAnimalsInStore();
                             endTurn = true;
-                                break;
+                            break;
 
                         case 2:
-                            if(players.get(j).animals.size() <= 0) {
+                            if (players.get(j).animals.size() <= 0) {
                                 System.out.println("\n".repeat(20));
                                 System.out.println(CYAN_BRIGHT + "[Game]:" + RESET + " You don't have any animals");
+                                endTurn = false;
                                 break;
                             } else if (players.get(j).animals.size() >= 1) {
                                 System.out.println("\n".repeat(28));
                                 players.get(j).sellAnimals(players.get(j));
                                 endTurn = true;
-                            }   break;
+                            }
+                            break;
 
                         case 3:
                             System.out.println("\n".repeat(28));
                             players.get(j).buyFood();
                             endTurn = true;
-                                break;
+                            break;
 
                         case 4:
-                            if(players.get(j).animals.size() <= 0){
+                            if (players.get(j).animals.size() <= 0) {
                                 System.out.println("\n".repeat(25));
                                 System.out.println(CYAN_BRIGHT + "[Game]:" + RESET + " You don't have any animals");
+                                endTurn = false;
                                 break;
-                            } else if(players.get(j).food.size() == 0){
+                            } else if (players.get(j).food.size() == 0) {
                                 System.out.println("\n".repeat(25));
                                 System.out.println("You're out of food supplies");
+                                endTurn = false;
                                 break;
-                            } else if (players.get(j).animals.size() >= 1){
+                            } else if (players.get(j).animals.size() >= 1) {
                                 System.out.println("\n".repeat(28));
                                 players.get(j).feedAnimal(players.get(j));
                                 endTurn = true;
-                            }   break;
+                            }
+                            break;
 
 
                         case 5:
-                                if (players.get(j).animals.size() < 2) {
-                                    System.out.println("\n".repeat(20));
-                                    System.out.println(CYAN_BRIGHT + "[Game]: " + RESET + "Need at least 2 animals..");
-                                    break;
+                            int male = 0;
+                            int female = 0;
+                            int co = 0;
+                            if (players.get(j).animals.size() >= 2) {
+                                for (int n = 0; n < players.get(j).animals.size(); n++) {
+                                    for (int k = 0; k < players.get(j).animals.size(); k++) {
+                                        if (players.get(j).animals.get(n).getClass().getSimpleName().equals(players.get(j).animals.get(k).getClass().getSimpleName())) {
+                                            co++;
+                                            if(players.get(j).animals.get(n).gender.equals("male")){
+                                                male++;
+                                            }
+                                            if(players.get(j).animals.get(n).gender.equals("female")){
+                                                female++;
+                                            }
+                                        }
+                                    }
                                 }
-                            System.out.println("\n".repeat(20));
-                            checkAnimals(players.get(j));
-                            endTurn = true;
-                            break;
+                            }
+                            if(male > 0 && female > 0 && co > 0){
+                                players.get(j).mateAnimals(players.get(j));
+                                endTurn = true;
+                            } else if(players.get(j).animals.size() < 2){
+                                System.out.println("\n".repeat(20));
+                                System.out.println(CYAN_BRIGHT + "[Game]: " + RESET + "You need at least 2 animals.");
+                                endTurn = false;
+                                break;
+                            } else {
+                                System.out.println("\n".repeat(20));
+                                System.out.println(CYAN_BRIGHT + "[Game]: " + RESET + "You need: (male) & (female).");
+                                endTurn = false;
+                                break;
+                            }
+
+
                     }
                 }
             }
             healthLoss();
         }
+
         andTheWinnerIs();
     }
 
 
     public void printMenu(Player p) {
 
-        System.out.println("[ " + p.name + " ] it's your turn:");
+        System.out.println("[ " + BLUE_BOLD + p.name + RESET + " ] it's your turn:");
         System.out.println("-".repeat(30));
         System.out.println("Your balance: " + "$" + p.money);
         System.out.println("-".repeat(30));
@@ -242,6 +275,12 @@ public class Game {
 
         System.out.println("Second place is: " + CYAN_BRIGHT + secondPlace.name + RESET + " " +
                 "your total balance is: $" + ANSI_YELLOW + secondPlace.money + RESET);
+        }
+
+        public void checkBalance(Player p){
+            if(p.money == 0 && p.animals.size() == 0){
+                andTheWinnerIs();
+            }
         }
     }
 

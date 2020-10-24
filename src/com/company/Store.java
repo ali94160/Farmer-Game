@@ -4,7 +4,7 @@ public class Store {
     public static final String ANSI_GREEN = "\u001B[32m";
     public static final String ANSI_RED = "\u001B[31m";
     public static final String ANSI_RESET = "\u001B[0m";
-    public static final String ANSI_YELLOW = "\u001B[33m";
+    public static final String BLUE_BOLD = "\033[1;34m";
     public static final String GREEN_BRIGHT = "\033[0;92m";
     public static final String CYAN_BRIGHT = "\033[0;96m";
     public static final String WHITE_BOLD = "\033[1;37m";  // Bold WHITE
@@ -20,7 +20,7 @@ public class Store {
         do {
             System.out.println("---------------[PET STORE]--------------");
             System.out.println("Balance: " + "$" + p.money);
-            System.out.println("[" + p.name + "]" + " What Animal would you like to buy?");
+            System.out.println("[" + BLUE_BOLD + p.name + ANSI_RESET + "]" + " What Animal would you like to buy?");
             System.out.println("-".repeat(41));
             System.out.println("| ANIMALS | PRICE | MAX CHILD | MAX AGE |");
             System.out.println("1. Rabbit | $1000 |   5       |    5    |");
@@ -31,6 +31,12 @@ public class Store {
             System.out.println("-".repeat(41));
             System.out.println("0. EXIT THE SHOP");
             input = scanner.next();
+
+            if(p.money < 1000){
+                System.out.println("\n".repeat(20));
+                System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET + "You dont have enough money to buy a animal." );
+                break;
+            }
 
             if (input.equals("1")) {
                 System.out.print("Name your Rabbit: ");
