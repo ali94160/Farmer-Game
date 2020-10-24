@@ -249,15 +249,17 @@ public class Store {
                         System.out.println("Invalid input");
                     }
                 }
-                if (Integer.parseInt(input2) <= 0) {
-                    System.out.println("Invalid input");
-                    food(p);
+                if (Integer.parseInt(input2) <= 0 || (Integer.parseInt(input2)*50) > p.money) {
+                        System.out.println("You don't have enough money for that.");
+                        food(p);
+                        break;
+
                 } else if (Integer.parseInt(input2) > 0) {
-                    p.money -= Integer.parseInt(input2) * 50;
-                    System.out.println("\n".repeat(25));
-                    System.out.println("You bought " + input2 + "kg apples...");
-                    if(!checkFood("Apple",p)) {
-                        p.food.add(new Apples("Apple", (Integer.parseInt(input2)), 50));
+                        p.money -= Integer.parseInt(input2) * 50;
+                        System.out.println("\n".repeat(25));
+                        System.out.println("You bought " + input2 + "kg apples...");
+                        if (!checkFood("Apple", p)) {
+                            p.food.add(new Apples("Apple", (Integer.parseInt(input2)), 50));
                     }
                 }
             }
@@ -275,9 +277,10 @@ public class Store {
                         System.out.println("Invalid input");
                     }
                 }
-                if (Integer.parseInt(input2) <= 0) {
-                    System.out.println("Invalid input");
+                if (Integer.parseInt(input2) <= 0 || (Integer.parseInt(input2)*50) > p.money) {
+                    System.out.println("You don't have enough money for that.");
                     food(p);
+                    break;
                 } else if (Integer.parseInt(input2) > 0) {
                     p.money -= Integer.parseInt(input2) * 50;
                     System.out.println("\n".repeat(25));
@@ -301,16 +304,17 @@ public class Store {
                         System.out.println("Invalid input");
                     }
                 }
-                if (Integer.parseInt(input2) <= 0) {
-                    System.out.println("Invalid input");
+                if (Integer.parseInt(input2) <= 0 || (Integer.parseInt(input2)*40) > p.money) {
+                    System.out.println("You don't have enough money for that.");
                     food(p);
+                    break;
                 }
                 else if(Integer.parseInt(input2) > p.money) {
                     System.out.println("Not enough money");
                     return;
                 }
                     else if (Integer.parseInt(input2) > 0) {
-                    p.money -= Integer.parseInt(input2) * 50;
+                    p.money -= Integer.parseInt(input2) * 40;
                     System.out.println("\n".repeat(25));
                     System.out.println("You bought " + input2 + "kg grass...");
                     if (!checkFood("Grass", p)) {
