@@ -154,6 +154,11 @@ public class Player {
                 optionCounter2++;
 
             }
+            if(p.food.size() < 1){
+                System.out.println("\n".repeat(30));
+                System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET + "You ran out of food supplies.");
+                return;
+            }
 
             while(true) {
                 try {
