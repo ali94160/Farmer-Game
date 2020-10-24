@@ -66,8 +66,11 @@ public class Game {
 
     public void mainMenu() {
         for (int i = 0; i < roundInput; i++) {
+            for (Player player : players) {
+                checkBalance(player);
+            }
             for (int j = 0; j < players.size(); j++) {
-                checkBalance(players.get(j));
+
                 players.get(j).deadAnimal();
                 boolean endTurn = false;
                 while (!endTurn) {
@@ -111,7 +114,7 @@ public class Game {
                         case 2:
                             if (players.get(j).animals.size() <= 0) {
                                 System.out.println("\n".repeat(20));
-                                System.out.println(CYAN_BRIGHT + "[Game]:" + RESET + " You don't have any animals");
+                                System.out.println(CYAN_BRIGHT + "[Game]:" + RESET + " You don't have any animals.");
                                 endTurn = false;
                                 break;
                             } else if (players.get(j).animals.size() >= 1) {
@@ -122,23 +125,28 @@ public class Game {
                             break;
 
                         case 3:
-                            System.out.println("\n".repeat(28));
-                            players.get(j).buyFood();
-                            endTurn = true;
+                            if(players.get(j).money <= 0){
+                                System.out.println(CYAN_BRIGHT + "[Game]:" + RESET + " You don't have enough money for that.");
+                                endTurn = false;
+                            } else {
+                                System.out.println("\n".repeat(28));
+                                players.get(j).buyFood();
+                                endTurn = true;
+                            }
                             break;
 
                         case 4:
                             if (players.get(j).animals.size() <= 0) {
                                 System.out.println("\n".repeat(25));
-                                System.out.println(CYAN_BRIGHT + "[Game]:" + RESET + " You don't have any animals");
+                                System.out.println(CYAN_BRIGHT + "[Game]:" + RESET + " You don't have any animals.");
                                 endTurn = false;
                                 break;
                             } else if (players.get(j).food.size() == 0) {
                                 System.out.println("\n".repeat(25));
-                                System.out.println("You're out of food supplies");
+                                System.out.println("You're out of food supplies.");
                                 endTurn = false;
                                 break;
-                            } else if (players.get(j).animals.size() >= 1) {
+                            } else {
                                 System.out.println("\n".repeat(28));
                                 players.get(j).feedAnimal(players.get(j));
                                 endTurn = true;
@@ -224,33 +232,6 @@ public class Game {
         }
     }
 
-
-
-    public void checkAnimals(Player p) {
-        int male = 0;
-        int female = 0;
-        int co = 0;
-        if (p.animals.size() >= 2) {
-            for (int i = 0; i < p.animals.size(); i++) {
-                for (int j = 0; j < p.animals.size(); j++) {
-                    if (p.animals.get(i).getClass().getSimpleName().equals(p.animals.get(j).getClass().getSimpleName())) {
-                        co++;
-                        if(p.animals.get(i).gender.equals("male")){
-                            male++;
-                        }
-                        if(p.animals.get(i).gender.equals("female")){
-                            female++;
-                        }
-                    }
-                }
-            }
-        }
-        if(male > 0 && female > 0 && co > 0){
-            p.mateAnimals(p);
-        }
-    }
-
-
     public void andTheWinnerIs(){
 
 
@@ -278,8 +259,11 @@ public class Game {
         }
 
         public void checkBalance(Player p){
-            if(p.money == 0 && p.animals.size() == 0){
+        for(int i = 0; i < players.size(); i++){
+            if(players.get(i).money == 0 && players.get(i).animals.size()-1 < 0) {
+                System.out.println("test");
                 andTheWinnerIs();
+            }
             }
         }
     }

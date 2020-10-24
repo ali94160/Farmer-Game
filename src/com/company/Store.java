@@ -17,7 +17,7 @@ public class Store {
 
     public static void buyAnimal(Player p){
 
-        do {
+        while(p.money >= 1000) {
             System.out.println("---------------[PET STORE]--------------");
             System.out.println("Balance: " + "$" + p.money);
             System.out.println("[" + BLUE_BOLD + p.name + ANSI_RESET + "]" + " What Animal would you like to buy?");
@@ -32,11 +32,6 @@ public class Store {
             System.out.println("0. EXIT THE SHOP");
             input = scanner.next();
 
-            if(p.money < 1000){
-                System.out.println("\n".repeat(20));
-                System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET + "You dont have enough money to buy a animal." );
-                break;
-            }
 
             if (input.equals("1")) {
                 System.out.print("Name your Rabbit: ");
@@ -64,11 +59,13 @@ public class Store {
                     else if(Integer.parseInt(input2) < 1 || Integer.parseInt(input2) > 2){
                         System.out.println("\n".repeat(25));
                         System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET +"Invalid input");
+                        break;
                     }
                 } catch (Exception e){
                     System.out.println("\n".repeat(25));
                     System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET +"Invalid input");
                     buyAnimal(p);
+                    break;
                 }
             }
 
@@ -97,11 +94,13 @@ public class Store {
                     } else if(Integer.parseInt(input2) < 1 || Integer.parseInt(input2) > 2){
                         System.out.println("\n".repeat(25));
                         System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET +"Invalid input");
+                        break;
                     }
                 } catch (Exception e){
                     System.out.println("\n".repeat(25));
                     System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET +"Invalid input");
                     buyAnimal(p);
+                    break;
                 }
             }
 
@@ -131,11 +130,13 @@ public class Store {
                     }else if(Integer.parseInt(input2) < 1 || Integer.parseInt(input2) > 2){
                         System.out.println("\n".repeat(25));
                         System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET +"Invalid input");
+                        break;
                     }
                 } catch (Exception e){
                     System.out.println("\n".repeat(25));
                     System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET +"Invalid input");
                     buyAnimal(p);
+                    break;
                 }
             }
 
@@ -165,11 +166,13 @@ public class Store {
                     }else if(Integer.parseInt(input2) < 1 || Integer.parseInt(input2) > 2){
                         System.out.println("\n".repeat(25));
                         System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET +"Invalid input");
+                        break;
                     }
                 } catch (Exception e){
                     System.out.println("\n".repeat(25));
                     System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET +"Invalid input");
                     buyAnimal(p);
+                    break;
                 }
             }
 
@@ -199,17 +202,23 @@ public class Store {
                     }else if(Integer.parseInt(input2) < 1 || Integer.parseInt(input2) > 2){
                         System.out.println("\n".repeat(25));
                         System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET +"Invalid input");
+                        break;
                     }
                 } catch (Exception e){
                     System.out.println("\n".repeat(25));
                     System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET +"Invalid input");
                     buyAnimal(p);
+                    break;
                 }
             }
 
-
-        } while (!input.equals("0"));
+            if(input.equals("0")){
+                return;
+            }
+        }
         System.out.println("\n".repeat(25));
+        System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET +"You don't have enough money to buy a animal anymore.");
+
     }
 
     public static void food(Player p){
