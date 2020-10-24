@@ -32,7 +32,7 @@ public class Player {
 
     public Player(String name) {
         this.name = name;
-        this.money = 10000;
+        this.money = 1500;
     }
 
     public void showAnimalsInStore() {
@@ -94,6 +94,10 @@ public class Player {
         int profit = (a.healthPoints * a.price) / 100;
         money += profit;
         System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET +"You gained $" + ANSI_GREEN + profit + ANSI_RESET + " to your balance." + "\n");
+    }
+    public void sellAllAnimals(Animal a) {
+        int profit = (a.healthPoints * a.price) / 100;
+        money += profit;
     }
 
     public void deadAnimal() {

@@ -66,15 +66,12 @@ public class Game {
 
     public void mainMenu() {
         for (int i = 0; i < roundInput; i++) {
-            for (Player player : players) {
-                checkBalance(player);
-            }
             for (int j = 0; j < players.size(); j++) {
-
                 players.get(j).deadAnimal();
+                checkPlayerBalanceAndAnimals(players.get(j));
+
                 boolean endTurn = false;
                 while (!endTurn) {
-
                     System.out.println("\n".repeat(2));
                     System.out.println(BLUE_BOLD + "Round: " + (i + 1) + RESET);
                     printMenu(players.get(j));
@@ -97,7 +94,6 @@ public class Game {
                             scanner.next();
                         }
                     }
-
                     switch (playerInput) {
                         case 1:
                             if (players.get(j).money < 1000) {
@@ -109,7 +105,7 @@ public class Game {
                             System.out.println("\n".repeat(28));
                             players.get(j).showAnimalsInStore();
                             endTurn = true;
-                            break;
+                                break;
 
                         case 2:
                             if (players.get(j).animals.size() <= 0) {
@@ -121,8 +117,7 @@ public class Game {
                                 System.out.println("\n".repeat(28));
                                 players.get(j).sellAnimals(players.get(j));
                                 endTurn = true;
-                            }
-                            break;
+                            }   break;
 
                         case 3:
                             if(players.get(j).money <= 0){
@@ -132,8 +127,7 @@ public class Game {
                                 System.out.println("\n".repeat(28));
                                 players.get(j).buyFood();
                                 endTurn = true;
-                            }
-                            break;
+                            } break;
 
                         case 4:
                             if (players.get(j).animals.size() <= 0) {
@@ -150,8 +144,7 @@ public class Game {
                                 System.out.println("\n".repeat(28));
                                 players.get(j).feedAnimal(players.get(j));
                                 endTurn = true;
-                            }
-                            break;
+                            }   break;
 
 
                         case 5:
@@ -187,8 +180,6 @@ public class Game {
                                 endTurn = false;
                                 break;
                             }
-
-
                     }
                 }
             }
@@ -237,7 +228,7 @@ public class Game {
 
         for(int i = 0; i < players.size(); i++){
             for(int j = 0; j < players.get(i).animals.size(); j++){
-                players.get(i).animalSold(players.get(i).animals.get(j));
+                players.get(i).sellAllAnimals(players.get(i).animals.get(j));
 
                 }
             }
@@ -256,13 +247,19 @@ public class Game {
 
         System.out.println("Second place is: " + CYAN_BRIGHT + secondPlace.name + RESET + " " +
                 "your total balance is: $" + ANSI_YELLOW + secondPlace.money + RESET);
+        System.exit(0);
         }
 
-        public void checkBalance(Player p){
+        public void checkPlayerBalanceAndAnimals(Player p){
         for(int i = 0; i < players.size(); i++){
-            if(players.get(i).money == 0 && players.get(i).animals.size()-1 < 0) {
-                System.out.println("test");
-                andTheWinnerIs();
+            if(players.get(i).money < 40 && players.get(i).animals.size() <= 0) {
+                System.out.println("Player " + players.get(i).name + " has is out of the game.");
+                players.remove(i);
+
+                if(players.size() <= 1){
+                    andTheWinnerIs();
+                } return;
+
             }
             }
         }
