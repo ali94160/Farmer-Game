@@ -249,12 +249,13 @@ public class Player {
             try {
                 input = scanner.next();
                 if(Integer.parseInt(input) > animals.size() || Integer.parseInt(input) < 0){
-                    System.out.println("Invalid input");
+                    System.out.println("\n".repeat(30));
+                    System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET +"Invalid input");
                     mateAnimals(p);
                 }
             } catch (Exception e){
-                System.out.println("\n".repeat(25));
-                System.out.println("Invalid input");
+                System.out.println("\n".repeat(30));
+                System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET +"Invalid input");
                 mateAnimals(p);
             }
 
@@ -264,7 +265,8 @@ public class Player {
             }
             typeOfAnimal = animals.get(Integer.parseInt(input) - 1);
             if(typeOfAnimal.gender.equals("female")){
-                System.out.println("Pick a male animal first..");
+                System.out.println("\n".repeat(30));
+                System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET +"Pick a male animal first..");
                 mateAnimals(p);
             }
 
@@ -283,34 +285,38 @@ public class Player {
             try {
                 input2 = scanner.next();
                 if(Integer.parseInt(input2) > animals.size() || Integer.parseInt(input2) < 1){
-                    System.out.println("Invalid input");
+                    System.out.println("\n".repeat(30));
+                    System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET +"Invalid input");
                     mateAnimals(p);
                 }
             } catch (Exception e){
-                System.out.println("\n".repeat(25));
-                System.out.println("Invalid input");
+                System.out.println("\n".repeat(30));
+                System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET +"Invalid input");
                 mateAnimals(p);
             }
 
             System.out.println("\n".repeat(2));
             if(input2.equals("0")){
                 break;
-            }
+            } else {
 
-            typeOfAnimal = animals.get(Integer.parseInt(input2) - 1);
-            if(typeOfAnimal.gender.equals("male")){
-                System.out.println("Pick in correct order: male > female..");
-                mateAnimals(p);
-            }
-            System.out.println("\n".repeat(35));
+                typeOfAnimal = animals.get(Integer.parseInt(input2) - 1);
+                if (typeOfAnimal.gender.equals("male")) {
+                    System.out.println("\n".repeat(30));
+                    System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET + "Pick in correct order: male > female..");
+                    mateAnimals(p);
+                }
+                System.out.println("\n".repeat(35));
 
 
-            if(!p.animals.get(Integer.parseInt(input2)-1).getClass().getSimpleName().equals
-                    (p.animals.get(Integer.parseInt(input)-1).getClass().getSimpleName())){
-                System.out.println("Has to be same animal");
-                mateAnimals(p);
-                return;
+                if (!p.animals.get(Integer.parseInt(input2) - 1).getClass().getSimpleName().equals
+                        (p.animals.get(Integer.parseInt(input) - 1).getClass().getSimpleName())) {
+                    System.out.println("\n".repeat(30));
+                    System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET +"Has to be same animal");
+                    mateAnimals(p);
+                    return;
 
+                }
             }
 
 
@@ -329,7 +335,7 @@ public class Player {
                                 System.out.println(ANSI_GREEN + "Congratulation!" + ANSI_RESET + " Its a BOY!");
                                 System.out.print("Name your Sheep: ");
                                 inputName = scanner.next();
-                                p.animals.add(new Dog(inputName, "male", "Apple"));
+                                p.animals.add(new Sheep(inputName, "male", "Grass"));
 
                                 System.out.println("\n".repeat(25));
 
@@ -337,7 +343,7 @@ public class Player {
                                 System.out.println(ANSI_GREEN + "Congratulation!" + ANSI_RESET + " Its a GIRL!");
                                 System.out.print("Name your Sheep: ");
                                 inputName = scanner.next();
-                                p.animals.add(new Dog(inputName, "female", "Grass"));
+                                p.animals.add(new Sheep(inputName, "female", "Grass"));
 
                                 System.out.println("\n".repeat(25));
                             }
@@ -400,7 +406,7 @@ public class Player {
                                 System.out.println(ANSI_GREEN + "Congratulation!" + ANSI_RESET + " Its a BOY!");
                                 System.out.println("Name your Cat: ");
                                 inputName = scanner.next();
-                                p.animals.add(new Dog(inputName, "male", "Apple"));
+                                p.animals.add(new Cat(inputName, "male", "Apple"));
 
                                 System.out.println("\n".repeat(25));
 
@@ -408,7 +414,7 @@ public class Player {
                                 System.out.println(ANSI_GREEN + "Congratulation!" + ANSI_RESET + " Its a GIRL!");
                                 System.out.println("Name your Cat: ");
                                 inputName = scanner.next();
-                                p.animals.add(new Dog(inputName, "female", "Apple"));
+                                p.animals.add(new Cat(inputName, "female", "Apple"));
 
                                 System.out.println("\n".repeat(25));
                             }
@@ -436,7 +442,7 @@ public class Player {
                                 System.out.println(ANSI_GREEN + "Congratulation!" + ANSI_RESET + " Its a BOY!");
                                 System.out.println("Name your Cow: ");
                                 inputName = scanner.next();
-                                p.animals.add(new Dog(inputName, "male", "Grass"));
+                                p.animals.add(new Cow(inputName, "male", "Grass"));
 
                                 System.out.println("\n".repeat(25));
 
@@ -444,7 +450,7 @@ public class Player {
                                 System.out.println(ANSI_GREEN + "Congratulation!" + ANSI_RESET + " Its a GIRL!");
                                 System.out.println("Name your Cow: ");
                                 inputName = scanner.next();
-                                p.animals.add(new Dog(inputName, "female", "Grass"));
+                                p.animals.add(new Cow(inputName, "female", "Grass"));
 
                                 System.out.println("\n".repeat(25));
                             }
@@ -471,14 +477,14 @@ public class Player {
                                 System.out.println(ANSI_GREEN + "Congratulation!" + ANSI_RESET + " Its a BOY!");
                                 System.out.println("Name your Rabbit: ");
                                 inputName = scanner.next();
-                                p.animals.add(new Dog(inputName, "male", "Carrot"));
+                                p.animals.add(new Rabbit(inputName, "male", "Carrot"));
                                 System.out.println("\n".repeat(25));
 
                             } else {
                                 System.out.println(ANSI_GREEN + "Congratulation!" + ANSI_RESET + " Its a GIRL!");
                                 System.out.println("Name your Rabbit: ");
                                 inputName = scanner.next();
-                                p.animals.add(new Dog(inputName, "female", "Carrot"));
+                                p.animals.add(new Rabbit(inputName, "female", "Carrot"));
                                 System.out.println("\n".repeat(25));
                             }
                             babyCount--;
