@@ -14,7 +14,6 @@ public class Store {
     static String input = "";
     static String input2 = "";
 
-
     public static void buyAnimal(Player p){
 
         while(p.money >= 1000) {
@@ -30,6 +29,8 @@ public class Store {
             System.out.println("5. Cow    | $3000 |   2       |    16   |");
             System.out.println("-".repeat(41));
             System.out.println("0. EXIT THE SHOP");
+
+
             input = scanner.next();
 
 
@@ -70,6 +71,12 @@ public class Store {
             }
 
             if (input.equals("2")) {
+                if(p.money < 2000){
+                    System.out.println("\n".repeat(25));
+                    System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET +"You don't have enough money.");
+                    buyAnimal(p);
+                    break;
+                }
                 System.out.print("Name your Dog: ");
                 input = scanner.next();
                 System.out.print("What gender: \n 1. Male \n 2. Female \n");
@@ -106,6 +113,12 @@ public class Store {
 
 
             if (input.equals("3")) {
+                if(p.money < 2000){
+                    System.out.println("\n".repeat(25));
+                    System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET +"You don't have enough money.");
+                    buyAnimal(p);
+                    break;
+                }
                 System.out.print("Name your Cat: ");
                 input = scanner.next();
                 System.out.print("What gender: \n 1. Male \n 2. Female \n");
@@ -142,6 +155,12 @@ public class Store {
 
 
             if (input.equals("4")) {
+                if(p.money < 2500){
+                    System.out.println("\n".repeat(25));
+                    System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET +"You don't have enough money.");
+                    buyAnimal(p);
+                    break;
+                }
                 System.out.print("Name your Sheep: ");
                 input = scanner.next();
                 System.out.print("What gender: \n 1. Male \n 2. Female \n");
@@ -178,6 +197,12 @@ public class Store {
 
 
             if (input.equals("5")) {
+                if(p.money < 3000){
+                    System.out.println("\n".repeat(25));
+                    System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET +"You don't have enough money.");
+                    buyAnimal(p);
+                    break;
+                }
                 System.out.print("Name your Cow: ");
                 input = scanner.next();
                 System.out.print("What gender: \n 1. Male \n 2. Female \n");
@@ -199,9 +224,11 @@ public class Store {
                         System.out.println("\n".repeat(25));
                         System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET + ANSI_GREEN+
                                 "You've purchased a Cow" + " " + "(" + input2 + ")" + " for $3000 \n"+ ANSI_RESET);
-                    }else if(Integer.parseInt(input2) < 1 || Integer.parseInt(input2) > 2){
+
+                    } else if(Integer.parseInt(input2) < 1 || Integer.parseInt(input2) > 2){
                         System.out.println("\n".repeat(25));
                         System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET +"Invalid input");
+                        buyAnimal(p);
                         break;
                     }
                 } catch (Exception e){
@@ -216,8 +243,7 @@ public class Store {
                 return;
             }
         }
-        System.out.println("\n".repeat(25));
-        System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET +"You don't have enough money to buy a animal anymore.");
+
 
     }
 
@@ -329,8 +355,6 @@ public class Store {
         }
 
     }
-
-
     public static boolean checkFood(String type, Player p) {
         for (int i = 0; i < p.food.size(); i++) {
             if (p.food.get(i).name.equals(type)) {
