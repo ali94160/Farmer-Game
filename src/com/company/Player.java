@@ -279,7 +279,19 @@ public class Player {
             }
             System.out.println("-".repeat(45));
             System.out.println("0. EXIT");
-            input2 = scanner.next();
+
+            try {
+                input2 = scanner.next();
+                if(Integer.parseInt(input2) > animals.size() || Integer.parseInt(input2) < 1){
+                    System.out.println("Invalid input");
+                    mateAnimals(p);
+                }
+            } catch (Exception e){
+                System.out.println("\n".repeat(25));
+                System.out.println("Invalid input");
+                mateAnimals(p);
+            }
+
             System.out.println("\n".repeat(2));
             if(input2.equals("0")){
                 break;
