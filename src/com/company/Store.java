@@ -1,13 +1,12 @@
 package com.company;
 import java.util.*;
 public class Store {
+    // Colors for output.
     public static final String ANSI_GREEN = "\u001B[32m";
-    public static final String ANSI_RED = "\u001B[31m";
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String BLUE_BOLD = "\033[1;34m";
-    public static final String GREEN_BRIGHT = "\033[0;92m";
     public static final String CYAN_BRIGHT = "\033[0;96m";
-    public static final String WHITE_BOLD = "\033[1;37m";  // Bold WHITE
+    public static final String WHITE_BOLD = "\033[1;37m";
 
 
     static Scanner scanner = new Scanner(System.in);

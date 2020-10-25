@@ -14,7 +14,6 @@ public class Game {
     Random random = new Random();
     static int roundInput;
     int playerInput;
-    public static int healthPoints;
     String playerName;
     ArrayList<Player> players = new ArrayList<>();
 
@@ -23,7 +22,7 @@ public class Game {
         System.out.println("===========| FARMER GAME |===========");
         System.out.println("------------------------------------- \n");
 
-        System.out.println("How many rounds would you like to play?");
+        System.out.println("Welcome to Farmer Game!\nPlease choose between 5-30 rounds:");
         while (true) {
             try {
                 roundInput = scanner.nextInt();
@@ -69,6 +68,7 @@ public class Game {
             for (int j = 0; j < players.size(); j++) {
                 players.get(j).deadAnimal();
                 checkPlayerBalanceAndAnimals(players.get(j));
+                players.get(j).gotSick(players.get(j));
 
                 boolean endTurn = false;
                 while (!endTurn) {

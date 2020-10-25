@@ -18,13 +18,12 @@ public class Player {
     public static final String PURPLE_BOLD = "\033[1;35m"; // Bold PURPLE
     public static final String WHITE_BOLD = "\033[1;37m";  // Bold WHITE
 
-    Random random = new Random();
-    Scanner scanner = new Scanner(System.in);
+    static Random random = new Random();
+    static Scanner scanner = new Scanner(System.in);
     String input3 = "";
     String input = "";
     String input2 = "";
     String inputName = "";
-    String inputGender = "";
     public int money;
     public String name;
     public ArrayList<Animal> animals = new ArrayList<Animal>();
@@ -497,6 +496,68 @@ public class Player {
                 }
             }
         }
+    }
+
+    public void gotSick(Player p){
+        int sick = 1+ random.nextInt(5);
+
+        if(sick == 5){
+            for(int i = 0; i < p.animals.size(); i++){
+                System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET + p.name + ": Your animal " + "[" + p.animals.get(i).name +"]"
+                        + "[" + p.animals.get(i).healthPoints + " HP] has been sick!");
+                System.out.println("-".repeat(40));
+                System.out.println("You need to take your animal to the vet.");
+                System.out.println("1. Pay the veterinary cost. [$1000]");
+                System.out.println("2. Decline, your animal will die.");
+                p.animals.get(random.nextInt(animals.size()));
+
+while(true) {
+    try {
+        String input = scanner.next();
+
+    if (Integer.parseInt(input) == 1) {
+        if (p.money < 1000) {
+            System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET + "You don't have enough money, your animal will die.");
+            p.animals.remove(i);
+            break;
+        } else {
+            int sickChance = 1 + random.nextInt(2);
+
+            if (sickChance == 1) {
+                p.animals.get(i).healthPoints += 10 * 100;
+                if (p.animals.get(i).healthPoints > 100) {
+                    p.animals.get(i).healthPoints = 100;
+                }
+                p.money -= 1000;
+                System.out.println(ANSI_GREEN + "Your animal survived!" + ANSI_RESET);
+                return;
+            } else {
+                System.out.println(ANSI_RED + "Your animal didn't make it." + ANSI_RESET);
+                p.animals.remove(i);
+                break;
+            }
+        }
+    } else if (Integer.parseInt(input) == 2) {
+        System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET + "You've declined the payment.");
+        p.animals.remove(i);
+        break;
+    } else if (Integer.parseInt(input) < 1 || Integer.parseInt(input) > 2) {
+        System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET + "Invalid input");
+        gotSick(p);
+        break;
+    }
+    } catch (Exception error) {
+        System.out.println(CYAN_BRIGHT + "[Game]: " + ANSI_RESET + "Invalid input");
+    }
+}
+
+
+            }
+
+
+
+        }
+
     }
 
 }
